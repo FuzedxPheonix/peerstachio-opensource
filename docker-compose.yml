@@ -10,13 +10,16 @@ services:
         uncached: 1
     expose:
       - "8000"
+    ports:
+      - "8000:8000"
     volumes:
       - /home/django/app
       - static:/home/django/app/static
     env_file: .env
     environment:
       DEBUG: 'true'
-    command: /home/django/.local/bin/gunicorn docker_django.wsgi:application -w 2 -b :8000
+    # command: /home/django/.local/bin/gunicorn peerstachio.wsgi:application -w 2 -b :8000
+    command: /home/django/.local/bin/gunicorn peerstachio.wsgi:application -w 2 -b 0.0.0.0:8000 
     depends_on:
       - postgres
       - redis

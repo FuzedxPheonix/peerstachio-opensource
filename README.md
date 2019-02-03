@@ -15,5 +15,7 @@ Featuring:
 `docker-compose run web /usr/local/bin/python manage.py migrate`
 
 GET IP ADDRESS: `docker inspect -f '\''{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} NAME_OF_CONTAINER(_web_1)`
+(not necessary anymore, now binds to localhost)
+
 
 `docker-compose down`

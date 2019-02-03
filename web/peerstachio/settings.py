@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'docker_django.apps.todo',
+    'peerstachio.apps.todo',
 ]
 
 MIDDLEWARE = [
@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'docker_django.urls'
+ROOT_URLCONF = 'peerstachio.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'docker_django.wsgi.application'
+WSGI_APPLICATION = 'peerstachio.wsgi.application'
 
 
 # Database

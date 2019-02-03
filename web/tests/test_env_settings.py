@@ -6,7 +6,7 @@ from unittest.mock import patch
 # we have to use tools outside of django, because when it's initialized
 # it's too late to change environment variables
 from unittest import TestCase, main
-from docker_django import settings
+from peerstachio import settings
 
 
 class DebugSettingTest(TestCase):
