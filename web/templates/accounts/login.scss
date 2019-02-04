@@ -1,0 +1,39 @@
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+
+  form {
+    width: 18rem;
+
+    label {
+      font-family: var(--brandon-bold);
+      font-size: 0.9rem;
+    }
+
+    input {
+      width: 100%;
+      // height: 2rem;
+      margin-top: 10px;
+      margin-bottom: 1.5rem;
+      height: 50px;
+      padding-left: 20px;
+    }
+
+
+    .btn-yellow {
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    .alert {
+      margin-bottom: 1rem;
+
+      button {
+        display: none;
+      }
+    }
+  }
+}

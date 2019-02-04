@@ -1,0 +1,569 @@
+/* remove maxwidth = 1440 for chat app to stick to sides*/
+html,
+body,
+.container,
+.top-menu .home-user {
+  max-width: none;
+  overflow-y: hidden;
+}
+
+/* remove footer to make space for chat app */
+footer {
+  display: none;
+}
+
+/* modify body grid to remove footer */
+body {
+  grid-template-rows: 90px 1fr;
+  grid-row-gap: 0;
+}
+
+/* edit container dimensions to contain chat app*/
+.container {
+  margin: 0px;
+  padding: 0px;
+  max-height: calc(100vh - 100px);
+}
+
+/* overall chat app layout */
+#chat-app {
+  display: none;
+  height: 100%;
+  grid-template-columns: 5rem 280px 1fr 0px;
+  grid-template-rows: 7vh 1fr 12vh 3vh;
+  background: white;
+
+  .chat-list {
+    grid-column: 1 / 2;
+    grid-row: 1 / 5;
+  }
+
+  .chat-details {
+    grid-column: 2 / 3;
+    grid-row: 1 / 5;
+  }
+
+  .chat-top {
+    grid-column: 3 / 5;
+    grid-row: 1 / 2;
+  }
+
+  #messages {
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+  }
+
+  #message-form {
+    grid-column: 3 / 4;
+    grid-row: 3 / 4;
+  }
+  .thread-wrapper {
+    grid-column: 4 / 5;
+    grid-row: 2 / 5;
+  }
+}
+
+/* overall chat app layout */
+#chat-app.threaded {
+  grid-template-columns: 5rem 280px 1fr 375px;
+}
+
+/* chat top bar */
+
+.chat-top {
+  border-bottom: var(--chat-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  & > p {
+    padding: 1rem;
+    cursor: pointer;
+  }
+
+  input {
+    background: #f9f9f9;
+    border: 0;
+    height: 1.5rem;
+    padding: 0.5rem;
+    width: 12rem;
+    margin-right: 1rem;
+  }
+
+  span {
+    margin-right: 0.3rem;
+  }
+
+  .unanswered-qs-dropdown {
+    position: absolute;
+    top: 60px;
+    left: 1.5rem;
+    padding: 1.5rem 1rem;
+    border: 0.01rem solid var(--course-color);
+    box-shadow: 0 0rem 0.8rem var(--course-color);
+    border-radius: 0.3rem;
+    z-index: 99;
+    background: white;
+    display: none;
+    overflow-y: auto;
+    height: 350px;
+    max-width: 1400px;
+    .message-container {
+      max-width: none;
+      grid-template-columns: 54px auto;
+
+      grid-column-gap: 20px;
+      .user-name {
+        text-align: center;
+      }
+    }
+    .message-container:not(:last-child) {
+      margin-bottom: 30px;
+    }
+  }
+
+  .show {
+    display: block;
+  }
+}
+
+/* chat room list */
+
+.chat-list {
+  background: #1e3a4e;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  ul {
+    width: 100%;
+    height: 100%;
+    padding: 20px 0rem;
+    overflow: scroll;
+    padding-right: 150px;
+    box-sizing: content-box;
+
+    li {
+      width: 5rem;
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      margin-bottom: 20px;
+      position: relative;
+
+      span {
+        position: absolute;
+        left: 0;
+        width: 0.2rem;
+        height: 60px;
+      }
+
+      a {
+        display: grid;
+        align-items: center;
+        justify-items: center;
+        width: 60px;
+        height: 60px;
+
+        position: relative;
+        color: #1e3a4e;
+        border-radius: 0.1rem;
+        background: #567992;
+
+        p {
+          position: relative;
+          text-align: center;
+          font-size: 18px;
+          font-weight: 600;
+          word-wrap: break-word;
+        }
+      }
+    }
+
+    li:last-child {
+      p {
+        font-size: 1.5rem;
+      }
+      margin-bottom: 70px;
+    }
+
+    li.active {
+      p {
+        color: white;
+      }
+
+      span {
+        background: #38d41b;
+      }
+    }
+  }
+}
+
+/* chat room info */
+
+.chat-details {
+  padding: 30px;
+  background: #fbfef8;
+  border-right: var(--chat-border);
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    font-size: 1rem;
+
+    span {
+      margin-left: 0.4rem;
+      padding-top: 0.3rem;
+    }
+  }
+
+  .title {
+    p {
+      padding-top: 0.3rem;
+    }
+
+    margin-bottom: 2.5rem;
+  }
+
+  .peer-header {
+    font-size: 1rem;
+    margin-bottom: 37px;
+  }
+
+  .peers {
+    display: flex;
+    flex-direction: column;
+
+    .peer {
+      padding: 0.5rem 0px;
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      grid-column-gap: 17px;
+      grid-row-gap: 0.3rem;
+
+      .peer-pic {
+        width: 100%;
+        grid-column: 1/2;
+        grid-row: 1/3;
+      }
+
+      .peer-name {
+        font-family: var(--brandon-bold);
+      }
+
+      .peer-uni {
+        color: gray;
+        font-weight: normal;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+      }
+    }
+  }
+}
+
+#messages,
+.thread-scroll {
+  // padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    background: none;
+  }
+
+  .info {
+    align-self: flex-end;
+  }
+}
+
+.thread-wrapper {
+  background: #fbfbfb;
+  flex-direction: column;
+  display: none;
+  position: relative;
+  h3 {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    font-size: 22px;
+  }
+  i {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  textarea {
+    border: solid 1px var(--white);
+    width: 320px;
+    height: 140px;
+  }
+}
+
+#message-form {
+  display: grid;
+  height: 100%;
+  max-width: calc(100% - 2rem);
+  // min-width: 30rem;
+  margin: 0rem 1rem;
+  grid-template-columns: 1fr 8rem 8rem 8rem 8rem;
+  grid-template-rows: 1fr 1.5rem;
+  border: var(--chat-border);
+
+  #emoji-app {
+    grid-column: 1/5;
+    grid-row: 1/2;
+    .textarea {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  #answer-needed-by {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    border-top: var(--chat-border);
+    border-left: var(--chat-border);
+  }
+
+  #req-ans-from {
+    grid-column: 3/4;
+    grid-row: 2/3;
+    border-top: var(--chat-border);
+    border-left: var(--chat-border);
+  }
+
+  #mark-qs {
+    grid-column: 4/5;
+    grid-row: 2/3;
+    border-top: var(--chat-border);
+    border-left: var(--chat-border);
+
+    input {
+      border: none;
+      resize: none;
+      outline: none;
+    }
+  }
+
+  /* styling for ans-needed, req-ans-from and mark-qs */
+  .chat-btn {
+    padding: 0.5rem;
+    display: flex;
+    font-size: 0.6rem;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  #btn-wrapper {
+    grid-column: 5/6;
+    grid-row: 1/3;
+    border-left: var(--chat-border);
+  }
+}
+
+#message-form,
+#thread-form {
+  position: relative;
+
+  button {
+    background: #d6d6d6;
+    border: none;
+    color: #888888;
+    // margin-top: 20px;
+    float: right;
+  }
+
+  button.active {
+    color: white;
+    background: #1fa349;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  #btn-wrapper {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+  }
+
+  #upload-btn {
+    position: absolute;
+    bottom: 40px;
+    right: 170px;
+    cursor: pointer;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    width: 20px;
+    height: 20px;
+  }
+
+  #emoji-btn {
+    position: absolute;
+    bottom: 40px;
+    right: 200px;
+  }
+}
+
+/* Checkbox animation css */
+
+.checkbox-container {
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+
+  /* Hide the browser's default checkbox */
+  input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    height: 0.7rem;
+    width: 0.7rem;
+    background-color: white;
+    border: 0.03rem solid black;
+    border-radius: 0.1rem;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+  }
+
+  /* On mouse-over, add a grey background color */
+  &:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  /* When the checkbox is checked, add a green background */
+  input:checked ~ .checkmark {
+    background-color: #1fa349;
+    border: none;
+  }
+
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  /* Show the checkmark when checked */
+  input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  /* Style the checkmark/indicator */
+  .checkmark:after {
+    height: 0.5rem;
+    width: 0.3rem;
+    border: solid white;
+    border-width: 0 0.1rem 0.1rem 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    margin-bottom: 0.1rem;
+  }
+}
+
+#loader {
+  position: absolute;
+  top: 50%;
+  left: 47%;
+}
+
+.lds-circle {
+  display: inline-block;
+  width: 51px;
+  height: 51px;
+  margin: 6px;
+  border-radius: 50%;
+  animation: lds-circle 10s linear infinite;
+}
+
+@keyframes lds-circle {
+  0%,
+  100% {
+    // animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+    // animation-timing-function: linear;
+  }
+
+  0% {
+    transform: rotateY(0deg);
+  }
+
+  50% {
+    transform: rotateY(1800deg);
+    animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+  }
+
+  100% {
+    transform: rotateY(3600deg);
+  }
+}
+
+body .page-wrap header.top-menu div.home-user .search-input {
+  display: flex;
+}
+
+/* The Overlay (background) */
+.overlay {
+  /* Height & width depends on how you want to reveal the overlay (see JS below) */
+  height: 100%;
+  width: 0;
+  position: fixed; /* Stay in place */
+  z-index: 200; /* Sit on top */
+  left: 0;
+  top: 0;
+  background-color: rgb(0, 0, 0); /* Black fallback color */
+  background-color: rgba(0, 0, 0, 0.6); /* Black w/opacity */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  // transition: 0.5s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup {
+  width: 625px;
+  height: 238px;
+  box-shadow: 5px 2px 50px 0 rgba(31, 31, 31, 0.5);
+  background: white;
+  padding: 0px 34px;
+  position: relative;
+  h3 {
+    font-size: 24px;
+    font-weight: 900;
+    margin-top: 23px;
+    margin-bottom: 25px;
+  }
+  button {
+    position: absolute;
+    bottom: 40px;
+    right: 36px;
+    font-family: var(--brandon-reg);
+    width: 90px;
+    height: 44px;
+  }
+  svg {
+    margin-top: 4px;
+  }
+}

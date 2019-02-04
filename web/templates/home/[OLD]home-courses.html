@@ -1,0 +1,89 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" href="{% static 'css/home/home-courses.css'%}">
+<!-- Courses List -->
+<h3 class="section-header">Explore popular courses across universities:</h3>
+<br>
+<br>
+<div id="courses">
+  <script>
+    var courseData = {
+      "course": [{
+          "code": "STATS",
+          "number": 412,
+          "name": "Introduction to Statistics",
+          "university": "University of Michigan",
+          "specialist": 11,
+        },
+        {
+          "code": "EECS",
+          "number": 183,
+          "name": "Elementary Programming Concepts",
+          "university": "University of Michigan",
+          "specialist": 10,
+        },
+        {
+          "code": "STATS",
+          "number": 412,
+          "name": "Introduction to Statistics",
+          "university": "University of Michigan",
+          "specialist": 11,
+        },
+        {
+          "code": "EECS",
+          "number": 183,
+          "name": "Elementary Programming Concepts",
+          "university": "University of Michigan",
+          "specialist": 10,
+        },
+        {
+          "code": "STATS",
+          "number": 412,
+          "name": "Introduction to Statistics",
+          "university": "University of Michigan",
+          "specialist": 11,
+        },
+        {
+          "code": "EECS",
+          "number": 183,
+          "name": "Elementary Programming Concepts",
+          "university": "University of Michigan",
+          "specialist": 10,
+        },
+      ]
+    }
+    for (var i = 0; i < 6; ++i) {
+      var div = document.createElement("a");
+      div.href = "https://www.google.com";
+      div.classList.add("course");
+      div.innerHTML =
+        `
+        <p class="course-num">STATS 250</p>
+        <div class="line-icon star"></div>
+        <p class="course-name">Introduction to Statistics</p>
+        <div class="line-icon hat"></div>
+        <div class="course-info university">University of Michigan</div>
+        <div class="line-icon medal"></div>
+        <div class="course-info specialist">11 Specialists</div>
+      `;
+      div.getElementsByClassName("course-num")[0].innerHTML = courseData["course"][i]["code"] + " " +
+        courseData[
+          "course"][i]["number"];
+      div.getElementsByClassName("course-name")[0].innerHTML = courseData["course"][i]["name"];
+      div.getElementsByClassName("university")[0].innerHTML = courseData["course"][i]["university"];
+      div.getElementsByClassName("specialist")[0].innerHTML = courseData["course"][i]["specialist"] +
+        " specialists";
+      courses = document.getElementById("courses").appendChild(div);
+    }
+  </script>
+</div>
+<br>
+<br>
+<br>
+<div class="browse">
+  <a href="#">Browse all courses
+    <span class="ionicons"></span>
+  </a>
+</div>
+<!-- //Courses List-->
+<br>

@@ -1,0 +1,20 @@
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/home/home-welcome.css'%}" />
+
+<div>
+  <div id="intro">
+    <p>We are a network of peers, here to help answer your questions.</p>
+    <p>
+      Peerstachio is completely free to join and gives you instant access to a
+      network of peers and course specialists, ready to help answer your
+      questions.
+    </p>
+    <a href="{% url 'accounts:signup' %}" class="btn btn-yellow">
+      SIGN UP FOR FREE</a
+    >
+    <br />
+    <br />
+  </div>
+
+  {% include 'svg/homepage-illustration.svg' %}
+</div>

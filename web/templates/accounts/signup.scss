@@ -1,0 +1,47 @@
+form {
+  line-height: 1.15;
+  margin: auto;
+  width: 400px;
+
+  & * {
+    width: 100%;
+  }
+  input {
+    height: 50px;
+    padding-left: 20px;
+    &::-webkit-input-placeholder {
+      /* WebKit, Blink, Edge */
+      color: #bbbaba;
+    }
+    &:-moz-placeholder {
+      /* Mozilla Firefox 4 to 18 */
+      color: #bbbaba;
+      opacity: 1;
+    }
+    &::-moz-placeholder {
+      /* Mozilla Firefox 19+ */
+      color: #bbbaba;
+      opacity: 1;
+    }
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #bbbaba;
+    }
+  }
+  p,
+  .font-awesome {
+    margin: 10px 12px 10px 0;
+    color: #878787;
+  }
+
+  h3 {
+    margin: 30px 0 10px 0;
+    font-family: var(--brandon-bold);
+    font-size: 16px;
+  }
+
+  .btn {
+    margin-top: 54px;
+    margin-bottom: 153px;
+  }
+}

@@ -1,0 +1,108 @@
+{% load staticfiles %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/accounts/profile_settings.css'%}" />
+<h2>Profile Settings</h2>
+
+{% if messages %}
+<ul class="toaster">
+  {% for message in messages %}
+  <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+    {% if message.tags == "success" %} <i>✓</i> 
+    {% elif message.tags == "error"%} <i>✕</i> 
+    {% endif %} 
+    {{ message }}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<div class="grid">
+  <div class="left">
+    <form method="POST" action="/accounts/profile/edit/" class="edit_profile">
+      {% csrf_token %}
+      <div>
+        <h3>{{ display_name_form.username.label_tag }}</h3>
+
+        <div>{{ display_name_form.username }}</div>
+        {% if display_name_form.username.errors %}
+        <style>
+          #id_username {
+            border: red 0.01rem solid;
+          }
+        </style>
+        <ul class="errorlist">
+          {% for error in display_name_form.username.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      <div>
+        <h3>{{ grad_year_form.grad_year.label }}</h3>
+        <div class="form-select-wrapper">
+          {{ grad_year_form.grad_year }}
+          <div class="dropdown">
+            <div class="dropdown-header">
+              <p>{{ user.profile.grad_year }}</p>
+              <span class="ionicons"> </span>
+            </div>
+            <div class="dropdown-content">
+              <script>
+                var scriptTag = document.scripts[document.scripts.length - 1]
+                var parentTag = scriptTag.parentNode
+                if (
+                  parentTag.parentNode.firstElementChild.firstElementChild
+                    .innerHTML == 0
+                ) {
+                  parentTag.parentNode.firstElementChild.firstElementChild.innerHTML =
+                    '------'
+                }
+                var div = document.createElement('div')
+                div.innerHTML = '------'
+                div.onclick = function() {
+                  parentTag.parentNode.firstElementChild.firstElementChild.innerHTML = this.innerHTML
+                  document.getElementById('id_grad_year').value = 0
+                }
+                parentTag.appendChild(div)
+                for (var i = 0; i < 4; ++i) {
+                  var div = document.createElement('div')
+                  div.innerHTML = new Date().getFullYear() + i
+                  div.onclick = function() {
+                    parentTag.parentNode.firstElementChild.firstElementChild.innerHTML = this.innerHTML
+                    document.getElementById(
+                      'id_grad_year'
+                    ).value = this.innerHTML
+                  }
+                  parentTag.appendChild(div)
+                }
+              </script>
+            </div>
+          </div>
+
+          <i class="ionicons selector"></i>
+        </div>
+        {% if grad_year_form.username.errors %}
+        <style>
+          .dropdown-header {
+            border-color: red;
+          }
+        </style>
+        <ul class="errorlist">
+          {% for error in grad_year_form.username.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+      <input
+        style="margin-bottom: 0;"
+        type="submit"
+        value="Update Profile Settings"
+        class="btn btn-green"
+      />
+    </form>
+  </div>
+
+  <br />
+</div>
+
+{% endblock %}

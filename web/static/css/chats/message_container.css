@@ -1,0 +1,180 @@
+/* message design */
+.message-container {
+  align-self: flex-start;
+  display: grid;
+  line-height: 1.3; }
+  .message-container:hover .say-thanks > div {
+    display: flex; }
+  .message-container .say-thanks {
+    display: grid;
+    align-items: center; }
+    .message-container .say-thanks > div {
+      display: none;
+      align-items: center;
+      width: fit-content;
+      height: 30px;
+      margin: 0 20px;
+      margin-top: 15px;
+      padding: 5px;
+      font-size: 14px;
+      color: var(--tree-green);
+      border: solid 1px #e3e3e3;
+      border-radius: 5px;
+      background-color: white;
+      cursor: pointer;
+      -webkit-user-select: none;
+      /* Safari */
+      -moz-user-select: none;
+      /* Firefox */
+      -ms-user-select: none;
+      /* IE10+/Edge */
+      user-select: none;
+      /* Standard */ }
+    .message-container .say-thanks p {
+      padding-left: 7px;
+      padding-bottom: 3px; }
+  .message-container .user-img {
+    width: 54px;
+    height: 54px; }
+  .message-container .user-name {
+    font-size: 0.7rem;
+    color: var(--warm-grey); }
+  .message-container .message {
+    padding: 0.8rem;
+    border-radius: 0.3rem;
+    background: #eeeeee;
+    white-space: pre-wrap; }
+  .message-container .message-response {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    justify-self: end;
+    display: flex;
+    font-size: 0.6rem;
+    padding-top: 0.3rem;
+    cursor: pointer; }
+    .message-container .message-response p {
+      margin-left: 0.3rem;
+      color: #1e3a4e;
+      text-decoration: underline; }
+
+/* message design when sent by user */
+.me {
+  align-self: flex-end; }
+  .me .say-thanks {
+    justify-items: right; }
+  .me .message {
+    color: #116f2f;
+    background-color: #f2fcf2; }
+
+#messages .timestamp {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  font-size: 13px;
+  color: var(--warm-grey); }
+#messages .message-container {
+  margin-bottom: 1.5rem;
+  grid-template-columns: 54px 1fr 250px;
+  grid-template-rows: 27px 27px auto;
+  grid-column-gap: 17px;
+  max-width: 45rem; }
+  #messages .message-container .user-img {
+    grid-column: 1/2;
+    grid-row: 1/3; }
+  #messages .message-container .timestamp {
+    grid-column: 1/2;
+    grid-row: 3/4; }
+  #messages .message-container .user-name {
+    grid-column: 2/3;
+    grid-row: 1/2; }
+  #messages .message-container .say-thanks {
+    grid-column: 3/4;
+    grid-row: 1/2; }
+#messages .me {
+  grid-template-rows: 27px 27px auto;
+  grid-template-columns: 250px 1fr 54px;
+  grid-column-gap: 17px;
+  max-width: 45rem; }
+  #messages .me .user-img {
+    grid-column: 3/4;
+    grid-row: 1/3; }
+  #messages .me .timestamp {
+    grid-column: 3/4;
+    grid-row: 3/4; }
+  #messages .me .user-name {
+    justify-self: end;
+    grid-column: 2/3;
+    grid-row: 1/2; }
+  #messages .me .say-thanks {
+    grid-column: 1/2;
+    grid-row: 1/2; }
+#messages .message {
+  align-self: start;
+  grid-column: 2/3;
+  grid-row: 2/4; }
+#messages .qs-details {
+  grid-column: 2/3;
+  grid-row: 4/5;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; }
+  #messages .qs-details > p {
+    margin-right: 20px; }
+
+#thread-messages .timestamp,
+#thread-messages .user-name {
+  font-size: 14px;
+  color: var(--warm-grey); }
+#thread-messages .message-container.thread-header .message {
+  background: none;
+  padding-left: 0;
+  padding-right: 0; }
+#thread-messages .message-container {
+  position: relative;
+  margin-bottom: 1rem;
+  grid-template-columns: 50px auto;
+  grid-template-rows: 25px 25px auto; }
+  #thread-messages .message-container .user-img {
+    grid-column: 1/2;
+    grid-row: 1/3; }
+  #thread-messages .message-container .user-name {
+    grid-column: 2/3;
+    grid-row: 1/2; }
+  #thread-messages .message-container .timestamp {
+    grid-column: 2/3;
+    grid-row: 2/3; }
+  #thread-messages .message-container .user-name,
+  #thread-messages .message-container .timestamp {
+    margin-left: 11px; }
+#thread-messages .me {
+  grid-template-columns: auto 50px;
+  grid-template-rows: 25px 25px auto; }
+  #thread-messages .me .user-img {
+    grid-column: 2/3;
+    grid-row: 1/3; }
+  #thread-messages .me .user-name {
+    grid-column: 1/2;
+    grid-row: 1/2; }
+  #thread-messages .me .timestamp {
+    grid-column: 1/2;
+    grid-row: 2/3; }
+  #thread-messages .me .user-name,
+  #thread-messages .me .timestamp {
+    justify-self: end;
+    margin-right: 11px; }
+#thread-messages .message {
+  margin-top: 11px;
+  grid-column: 1/3;
+  grid-row: 3/4; }
+#thread-messages .say-thanks {
+  position: absolute;
+  bottom: -12px;
+  right: -31px; }
+
+.question .message {
+  background: var(--tree-green);
+  color: white; }
+
+/*# sourceMappingURL=message_container.css.map */

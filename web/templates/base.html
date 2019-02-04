@@ -1,0 +1,81 @@
+<!DOCTYPE html> {% load staticfiles %}
+<html lang="en">
+
+<head>
+  <title>{% block title %}Peerstachio{% endblock title %}</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.6, maximum-scale=3.0, minimum-scale=0.6" />
+  <meta name="author" content="Peerstachio" />
+  <meta property="og:site_name" content="Peerstachio" />
+  <meta property="og:title" content="Peerstachio" />
+  <meta property="og:description" content="We are a network of peers, here to help answer your questions." />
+  <meta property="og:image" content="http://peerstachio.herokuapp.com/static/images/Peerstachio_Logo_Square.png" />
+  <meta property="og:image:secure_url" content="https://peerstachio.herokuapp.com/static/images/Peerstachio_Logo_Square.png" />
+  <meta itemprop="name" content="Peerstachio" />
+  <meta itemprop="headline" content="Peerstachio" />
+  <meta itemprop="description" content="We are a network of peers, here to help answer your questions." />
+  <meta itemprop="image" content="https://peerstachio.herokuapp.com/static/images/Peerstachio_Logo_Square.png" />
+
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="{% static 'images/favicon/apple-touch-icon-57x57.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/favicon/apple-touch-icon-114x114.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/favicon/apple-touch-icon-72x72.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/favicon/apple-touch-icon-144x144.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="{% static 'images/favicon/apple-touch-icon-60x60.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{% static 'images/favicon/apple-touch-icon-120x120.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="{% static 'images/favicon/apple-touch-icon-76x76.png' %}" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="{% static 'images/favicon/apple-touch-icon-152x152.png' %}" />
+  <link rel="icon" type="image/png" href="{% static 'images/favicon/favicon-196x196.png' %}" sizes="196x196" />
+  <link rel="icon" type="image/png" href="{% static 'images/favicon/favicon-96x96.png' %}" sizes="96x96" />
+  <link rel="icon" type="image/png" href="{% static 'images/favicon/favicon-32x32.png' %}" sizes="32x32" />
+  <link rel="icon" type="image/png" href="{% static 'images/favicon/favicon-16x16.png' %}" sizes="16x16" />
+  <link rel="icon" type="image/png" href="{% static 'images/favicon/favicon-128.png' %}" sizes="128x128" />
+  <meta name="application-name" content="Peerstachio" />
+  <meta name="msapplication-TileColor" content="#000000" />
+  <meta name="msapplication-TileImage" content="{% static 'images/favicon/mstile-144x144.png' %}" />
+  <meta name="msapplication-square70x70logo" content="{% static 'images/favicon/mstile-70x70.png' %}" />
+  <meta name="msapplication-square150x150logo" content="{% static 'images/favicon/mstile-150x150.png' %}" />
+  <meta name="msapplication-wide310x150logo" content="{% static 'images/favicon/mstile-310x150.png' %}" />
+  <meta name="msapplication-square310x310logo" content="{% static 'images/favicon/mstile-310x310.png' %}" />
+
+  <!-- CSS Icons -->
+  <link rel="stylesheet" href="{% static 'css/reset.css'%}" />
+  <link rel="stylesheet" href="{% static 'css/fonts.css'%}" />
+  <link rel="stylesheet" href="{% static 'css/base.css'%}" />
+  <link rel="stylesheet" href="{% static 'css/menu.css'%}" />
+  <link rel="stylesheet" href="{% static 'css/footer.css'%}" />
+</head>
+
+<body>
+  <!-- <div class="page-wrap"> -->
+  <!-- MENU BAR -->
+  {% include "menu.html" %}
+  <!-- MENU BAR END -->
+
+  <!-- template for contents -->
+  <div class="container">{% block content %} {% endblock %}</div>
+  <!-- template for footer -->
+  <!-- </div> -->
+  <footer>
+    <div class="footer">
+
+      <p>Copyright © 2018 Peerstachio</p>
+      <a href="mailto:it@peerstachio.com" class="round-btn font-awesome"><i></i></a>
+      <!--
+          <a href="https://www.google.com/" class="round-btn ionicons"><i></i></a>
+        -->
+      <a href="https://www.linkedin.com/company/peerstachio/" class="round-btn ionicons"><i></i></a>
+      <!--
+          <a href="https://web.facebook.com/scarlettongruichern" class="round-btn ionicons"><i></i></a>
+        -->
+    </div>
+  </footer>
+  <script>
+    document
+      .querySelector('.container')
+      .addEventListener('click', function () {
+        dropdown.style.display = 'none'
+      })
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+{% block title %} {{block.super}}: {{room.room_name}} {% endblock title %}
+{% load staticfiles %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/chats/chat_room.css' %}">
+<link rel="stylesheet" href="{% static 'css/chats/message_container.css' %}">
+<div id="chat-app">
+  <div class="chat-list">
+    <ul>
+      {% for oneroom in rooms %} {% if oneroom.room_name_slug == room.room_name_slug %}
+      <li class="active">
+        <span></span>
+        <a href="/chats/{{oneroom.room_name_slug}}">
+          <p>{{room.room_name}}</p>
+        </a>
+      </li>
+      {% else %}
+      <li>
+        <span></span>
+        <a href="/chats/{{oneroom.room_name_slug}}">
+          <p>{{oneroom.room_name}}</p>
+        </a>
+      </li>
+      {% endif %} {% endfor %}
+      <script>
+        var scriptTag = document.scripts[document.scripts.length - 1];
+            var parentTag = scriptTag.parentNode;
+            var liTags = parentTag.querySelectorAll("li");
+            for (var i = 0; i < liTags.length; ++i) {
+              // console.log(liTags[i].querySelector("p"))
+              let room_name = liTags[i].querySelector("p").innerHTML;
+              if (room_name.length > 4) {
+                liTags[i].querySelector("p").innerHTML = room_name.substring(0,4);
+              }
+            }
+          </script>
+
+    </ul>
+  </div>
+  <div class="chat-details">
+    <div class="title">
+      <h3 class="section-header">{{room.room_name}}
+        <span class="ionicons"></span>
+      </h3>
+      <p class="subtitle">{{room.description}}</p>
+    </div>
+    <div>
+      <h3 class="section-header peer-header">Peers currently online:</h3>
+      <div class="peers">
+
+      </div>
+    </div>
+  </div>
+  <div class="chat-top">
+
+    <div class="unanswered-qs-dropdown">
+
+    </div>
+    <input type="text" placeholder="Search this chat...">
+  </div>
+  <div id="messages"></div>
+  <div class="thread-wrapper">
+    <h3></h3>
+    <i class="material" onclick=close_thread()></i>
+    <script>
+      function close_thread() {
+        document.getElementById("chat-app").classList.remove("threaded");
+        document.querySelector(".thread-wrapper").style.display = "none";
+        remove_thread_messages();
+        current_thread_id = -1;
+      }
+      function remove_thread_messages() {
+        [].forEach.call(document.querySelector("#thread-messages")
+                        .querySelectorAll('.message-container')
+                        ,function(e){
+                          e.parentNode.removeChild(e);
+                        });
+      }
+      </script>
+    <div class="thread-scroll">
+      <div id="thread-messages"></div>
+      <form id="thread-form" style="padding-bottom: 20px;">
+        <textarea class="textarea" id="thread-input" placeholder="Type an answer.." style="margin-bottom: 20px;"></textarea>
+        <button class="message-send-btn btn">SEND</button>
+      </form>
+    </div>
+  </div>
+  <form id="message-form">
+    <!-- <i class="line-icon" id="emoji-btn"></i> -->
+    <!-- <div title="Upload File" class="line-icon" id="upload-btn" onclick="document.getElementById('file-upload').click()"></div> -->
+    <input style="display: none;" id="file-upload" type="file" name="pic" accept="image/*">
+    <!-- <textarea class="textarea" id="message-input" placeholder="Type your question here…"></textarea> -->
+    {% include 'chats/emoji_selector.html' %}
+    <!-- <div class="chat-btn" id="answer-needed-by">
+      <span class="line-icon"></span>
+      <p>Answer needed by</p>
+    </div>
+    <div class="chat-btn" id="req-ans-from">
+      <span class="line-icon"></span>
+      <p>Request answer from</p>
+    </div> -->
+    <div class="chat-btn" id="mark-qs">
+      <label class="checkbox-container">
+        <!-- Real Checkbox -->
+        <input type="checkbox" name="markAsQuestion" value="mark-qs">
+        <!-- Fake Checkbox just for design -->
+        <span class="checkmark"></span>
+      </label>
+      <p>Mark this as Question</p>
+    </div>
+    <div id="btn-wrapper">
+      <button class="message-send-btn btn">SEND</button>
+    </div>
+  </form>
+  <script>
+    // document.getElementById("message-input").addEventListener("keydown", MessageTextOnKeyEnter)
+    document.getElementById("thread-input").addEventListener("keydown", MessageTextOnKeyEnter)
+
+    function MessageTextOnKeyEnter(e) {
+      if (e.keyCode == 13) {
+        e.preventDefault();
+        if (e.ctrlKey) {
+          var val = e.path[0].value;
+          if (typeof e.path[0].selectionStart == "number" && typeof e.path[0].selectionEnd == "number") {
+            var start = e.path[0].selectionStart;
+            e.path[0].value = val.slice(0, start) + "\n" + val.slice(e.path[0].selectionEnd);
+            e.path[0].selectionStart = e.path[0].selectionEnd = start + 1;
+          } else if (document.selection && document.selection.createRange) {
+            e.path[0].focus();
+            var range = document.selection.createRange();
+            range.text = "\r\n";
+            range.collapse(false);
+            range.select();
+          }
+          e.path[0].scrollTop = e.path[0].scrollHeight;
+        } else {
+          // console.log(this);
+          e.path[3].querySelector(".message-send-btn").click();
+          // document.querySelector("#message-form #message-send-btn").click();
+
+        }
+        return false;
+      }
+    }
+
+    document.getElementById("message-input").addEventListener("keyup", updateSendButton)
+    document.getElementById("thread-input").addEventListener("keyup", updateSendButton)
+    document.querySelector("#thread-form .message-send-btn").addEventListener('click', updateSendButton)
+    document.querySelector("#message-form .message-send-btn").addEventListener('click', updateSendButton)
+
+    function updateSendButton(e) {
+      if (e.keyCode == 13 && !e.ctrlKey && this.value == "\n") {
+        this.value = "";
+      }
+
+      if (this.value.length > 0) {
+        e.path[3].querySelector(".message-send-btn").classList.add("active");
+      } else {
+        e.path[3].querySelector(".message-send-btn").classList.remove("active");
+      }
+    }
+
+
+
+
+    function showQs() {
+      var menuClasses = document.querySelector(".unanswered-qs-dropdown").classList;
+      if (menuClasses.contains('show')) {
+        menuClasses.remove('show');
+        document.querySelector("#messages").removeEventListener('click', showQs);
+        document.querySelector(".chat-list").removeEventListener('click', showQs);
+        document.querySelector(".chat-details").removeEventListener('click', showQs);
+        document.querySelector(".thread-wrapper").removeEventListener('click', showQs);
+        document.querySelector("#message-form").removeEventListener('click', showQs);
+      } else {
+        menuClasses.add("show");
+        document.querySelector("#messages").addEventListener('click', showQs);
+        document.querySelector(".chat-list").addEventListener('click', showQs);
+        document.querySelector(".chat-details").addEventListener('click', showQs);
+        document.querySelector(".thread-wrapper").addEventListener('click', showQs);
+        document.querySelector("#message-form").addEventListener('click', showQs);
+      }
+    }
+  </script>
+</div>
+<img src="{% static 'images/Peerstachio_icon.PNG' %}" id="loader" class="lds-circle"></div>
+<div class="overlay">
+  <div class="popup">
+    <h3>You sent a Pistachio!</h3>
+    <p>Clicking the {% include "svg/peerstachio-logo.svg" %} icon lets your peer know you enjoyed reading their post
+      and
+      helps spread it to more people.</p>
+    <button class="btn btn-solid-green" onclick=hidePopup()>Got it!</button>
+    <script>
+      function hidePopup() {
+
+        document.querySelector(".overlay").style.width = 0;
+      }
+
+      function showPopup(element) {
+
+        var parent = element.parentNode;
+
+        console.log(parent)
+
+        var message_id = parent.getAttribute("uniqueid");
+
+        var data_bool = parent.getAttribute("booltest");
+
+        console.log(message_id)
+
+        $(document).ready(function() {
+          $.getJSON('chats/chat_update_thanks', {
+            device: 'browser',
+            message_id: message_id,
+            bool_test: data_bool
+          }, function(data) {
+            console.log(data)
+          })
+        })
+
+        document.querySelector(".overlay").style.width = "100%";
+      }
+    </script>
+  </div>
+</div>
+
+<script>
+  var username = "{{user}}";
+  var room_name_slug = "{{room.room_name_slug}}";
+  var current_thread_id = -1;
+
+  var chatSocket = new WebSocket(
+    'ws://' + window.location.host +
+    '/ws/chats/' + room_name_slug + '/');
+
+
+  chatSocket.onclose = function(e) {
+    console.error('Chat socket closed unexpectedly');
+  };
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+
+<script src="{% static 'chats/scripts/rooms.js'  %}"></script>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %} {% load staticfiles %} 
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/accounts/signup.css'%}">
+<h1>Sign Up</h1>
+<form method="POST">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+
+  {% for hidden_field in form.hidden_fields %}
+  {{ hidden_field.errors }}
+  {{ hidden_field }}
+  {% endfor %}
+  <div>
+    <h3> {{ form.email.label_tag }} </h3>
+    {{ form.email.errors }}
+    <input type="email" name="email" maxlength="254" autofocus="" required="" id="id_email" placeholder="example@umich.edu">
+    <p>{{ form.email.help_text }} </p>
+  </div>
+  <div>
+    <h3> {{ form.username.label_tag }} </h3>
+    {{ form.username.errors }}
+    <input type="text" name="username" maxlength="150" required="" id="id_username" placeholder="Student Name">
+  </div>
+
+  <div>
+    <h3> {{ form.password1.label_tag }} </h3>
+    {{ form.password1.errors }}
+    {{ form.password2.errors }}
+    <input type="password" name="password1" required="" id="id_password1" aria-autocomplete="list" placeholder="************">
+    <p>Password must be at least 9 characters long and include:</p>
+    <p><i class="font-awesome"></i>an uppercase character</p>
+    <p><i class="font-awesome"></i>a number</p>
+    <p><i class="font-awesome"></i>a special character</p>
+  </div>
+  <div>
+    <h3> {{ form.password2.label_tag }} </h3>
+    <input type="password" name="password2" required="" id="id_password2">
+  </div>
+
+  <input type="submit" value="Sign Up" class="btn btn-yellow">
+</form>
+{% endblock %}

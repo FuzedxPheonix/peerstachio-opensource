@@ -1,0 +1,248 @@
+/* message design */
+
+.message-container {
+  align-self: flex-start;
+  display: grid;
+
+  line-height: 1.3;
+
+  &:hover .say-thanks > div {
+    display: flex;
+  }
+  .say-thanks {
+    display: grid;
+    // width: 100%;
+    // height: 100%;
+    align-items: center;
+
+    & > div {
+      display: none;
+      // display: flex;
+      align-items: center;
+
+      width: fit-content;
+      height: 30px;
+      margin: 0 20px;
+      margin-top: 15px;
+      padding: 5px;
+
+      font-size: 14px;
+      color: var(--tree-green);
+      border: solid 1px #e3e3e3;
+      border-radius: 5px;
+      background-color: white;
+
+      cursor: pointer;
+      -webkit-user-select: none;
+      /* Safari */
+      -moz-user-select: none;
+      /* Firefox */
+      -ms-user-select: none;
+      /* IE10+/Edge */
+      user-select: none;
+      /* Standard */
+    }
+
+    p {
+      padding-left: 7px;
+      padding-bottom: 3px;
+    }
+  }
+
+  .user-img {
+    width: 54px;
+    height: 54px;
+  }
+
+  .user-name {
+    font-size: 0.7rem;
+    color: var(--warm-grey);
+  }
+
+  .message {
+    // margin-left: 0.4rem;
+    padding: 0.8rem;
+    border-radius: 0.3rem;
+    background: #eeeeee;
+    // align-self: center;
+    white-space: pre-wrap;
+  }
+
+  .message-response {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    justify-self: end;
+    display: flex;
+    font-size: 0.6rem;
+    padding-top: 0.3rem;
+    cursor: pointer;
+
+    p {
+      margin-left: 0.3rem;
+      color: #1e3a4e;
+      text-decoration: underline;
+    }
+  }
+}
+
+/* message design when sent by user */
+
+.me {
+  align-self: flex-end;
+
+  .say-thanks {
+    justify-items: right;
+  }
+  .message {
+    color: #116f2f;
+    background-color: #f2fcf2;
+  }
+}
+
+#messages {
+  .timestamp {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    font-size: 13px;
+    color: var(--warm-grey);
+  }
+  .message-container {
+    margin-bottom: 1.5rem;
+    grid-template-columns: 54px 1fr 250px;
+    grid-template-rows: 27px 27px auto;
+    grid-column-gap: 17px;
+    max-width: 45rem;
+    .user-img {
+      grid-column: 1/2;
+      grid-row: 1/3;
+    }
+    .timestamp {
+      grid-column: 1/2;
+      grid-row: 3/4;
+    }
+    .user-name {
+      grid-column: 2/3;
+      grid-row: 1/2;
+    }
+    .say-thanks {
+      grid-column: 3/4;
+      grid-row: 1/2;
+    }
+  }
+  .me {
+    grid-template-rows: 27px 27px auto;
+    grid-template-columns: 250px 1fr 54px;
+    grid-column-gap: 17px;
+    max-width: 45rem;
+    .user-img {
+      grid-column: 3/4;
+      grid-row: 1/3;
+    }
+    .timestamp {
+      grid-column: 3/4;
+      grid-row: 3/4;
+    }
+    .user-name {
+      justify-self: end;
+      grid-column: 2/3;
+      grid-row: 1/2;
+    }
+    .say-thanks {
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+  }
+  .message {
+    align-self: start;
+    grid-column: 2/3;
+    grid-row: 2/4;
+  }
+  .qs-details {
+    grid-column: 2/3;
+    grid-row: 4/5;
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    & > p {
+      margin-right: 20px;
+    }
+  }
+}
+
+#thread-messages {
+  .timestamp,
+  .user-name {
+    font-size: 14px;
+    color: var(--warm-grey);
+  }
+
+  .message-container.thread-header {
+    .message {
+      background: none;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+  .message-container {
+    position: relative;
+    margin-bottom: 1rem;
+    grid-template-columns: 50px auto;
+    grid-template-rows: 25px 25px auto;
+    .user-img {
+      grid-column: 1/2;
+      grid-row: 1/3;
+    }
+    .user-name {
+      grid-column: 2/3;
+      grid-row: 1/2;
+    }
+    .timestamp {
+      grid-column: 2/3;
+      grid-row: 2/3;
+    }
+    .user-name,
+    .timestamp {
+      margin-left: 11px;
+    }
+  }
+  .me {
+    grid-template-columns: auto 50px;
+    grid-template-rows: 25px 25px auto;
+    .user-img {
+      grid-column: 2/3;
+      grid-row: 1/3;
+    }
+    .user-name {
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+    .timestamp {
+      grid-column: 1/2;
+      grid-row: 2/3;
+    }
+    .user-name,
+    .timestamp {
+      justify-self: end;
+      margin-right: 11px;
+    }
+  }
+  .message {
+    margin-top: 11px;
+    grid-column: 1/3;
+    grid-row: 3/4;
+  }
+
+  .say-thanks {
+    position: absolute;
+    bottom: -12px;
+    right: -31px;
+  }
+}
+
+.question .message {
+  background: var(--tree-green);
+  color: white;
+}

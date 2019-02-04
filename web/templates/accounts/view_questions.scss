@@ -1,0 +1,80 @@
+// Course header
+li > .flex {
+  justify-content: flex-start;
+  h4 {
+    font-size: 18px;
+    letter-spacing: 0.3px;
+    color: #828181;
+    margin-right: 16px;
+  }
+  span {
+    border-bottom: solid 1.3px var(--white);
+    flex: 1;
+    height: 0.01px;
+  }
+}
+
+// Question
+li {
+  font-size: 18px;
+  .card {
+    margin-top: 20px;
+    padding: 20px 25px;
+    grid-template-columns: auto 180px;
+    grid-column-gap: 60px;
+    grid-row-gap: 20px;
+    p {
+      justify-self: start;
+      text-align: justify;
+    }
+    &:last-child {
+      margin-bottom: 50px;
+    }
+  }
+  a {
+    align-self: start;
+    margin-top: 15px;
+    i {
+      margin-right: 10px;
+    }
+    display: flex;
+    align-items: center;
+    color: var(--dark-blue-grey);
+    &:hover {
+      color: var(--dark-blue-grey);
+    }
+  }
+
+  .flex {
+    position: relative;
+    justify-content: flex-start;
+    justify-self: start;
+    p {
+      font-size: 14px;
+    }
+    p:first-child {
+      font-weight: bold;
+      letter-spacing: 0.4px;
+      margin-right: 60px;
+      margin-left: 75px;
+    }
+    p:last-child {
+      color: var(--warm-grey);
+      position: absolute;
+      left: 204px;
+      width: 100%;
+    }
+
+    .user-img {
+      position: absolute;
+      border: 2px white solid;
+    }
+    $maxImagesNumber: 2;
+    @for $i from $maxImagesNumber through 1 {
+      :nth-child(#{ $i }) {
+        z-index: #{$maxImagesNumber - ($i - 1)};
+        left: #{($i - 1) * 30}px;
+      }
+    }
+  }
+}

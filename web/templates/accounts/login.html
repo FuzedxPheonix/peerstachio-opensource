@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% load staticfiles %} {% block content %} {% load bootstrap3 %}
+<link rel="stylesheet" href="{% static 'css/accounts/login.css'%}">
+<div class="login">
+    <h1>Welcome Back!</h1>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <br>
+    <form method="POST">
+        {% csrf_token %} {{ form }}
+        <input class="btn btn-yellow" type="submit" value="LOG IN">
+    </form>
+</div>
+{% endblock %}

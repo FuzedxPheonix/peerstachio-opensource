@@ -1,0 +1,95 @@
+.section-header {
+  margin-top: 40px; }
+
+#courses {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-gap: 2rem; }
+  #courses .course-wrapper {
+    display: grid;
+    border: 0.01rem solid white;
+    border-radius: 0.2rem;
+    box-shadow: 0 0.1rem 0.2rem var(--course-color);
+    background: white; }
+    #courses .course-wrapper .course {
+      padding: 0.8rem;
+      border: 0px;
+      box-shadow: none; }
+      #courses .course-wrapper .course p {
+        font-size: 1rem; }
+      #courses .course-wrapper .course div {
+        font-size: 0.7rem; }
+    #courses .course-wrapper .divider {
+      border-top: 0.05rem solid #F0F0F0;
+      align-self: center; }
+    #courses .course-wrapper .currently {
+      padding: 0.8rem;
+      color: gray; }
+    #courses .course-wrapper .online img {
+      width: 2rem; }
+    #courses .course-wrapper .online .btn {
+      float: right; }
+  #courses .course {
+    display: grid;
+    grid-template-columns: 1.4rem 1fr 1rem;
+    grid-template-rows: auto 2.5fr 1fr 1fr;
+    grid-row-gap: 0.1rem;
+    grid-template-areas: "course-num course-num star" "course-name course-name course-name" "hat university university" "medal specialist specialist";
+    padding: 1.3rem;
+    background: white;
+    border: 0.01rem solid white;
+    border-radius: 0.2rem;
+    box-shadow: 0 0.1rem 0.2rem var(--course-color); }
+    #courses .course p {
+      color: black;
+      font-family: var(--brandon-bold);
+      font-weight: 900;
+      font-size: 1.2rem; }
+    #courses .course .course-name {
+      padding-bottom: 1rem; }
+    #courses .course .course-info,
+    #courses .course .line-icon {
+      color: gray;
+      font-size: 0.8rem; }
+    #courses .course .course-num {
+      grid-area: course-num;
+      padding-bottom: 0.5rem; }
+    #courses .course .star {
+      grid-area: star;
+      justify-self: end; }
+    #courses .course p.course-name {
+      grid-area: course-name;
+      font-size: 0.7rem; }
+    #courses .course .hat {
+      grid-area: hat; }
+    #courses .course .university {
+      grid-area: university; }
+    #courses .course .medal {
+      grid-area: medal;
+      align-self: center; }
+    #courses .course .specialist {
+      grid-area: specialist;
+      align-self: center; }
+  #courses .course-wrapper:hover {
+    border: 0.01rem solid var(--course-color);
+    box-shadow: 0 0.25rem 0.5rem var(--course-color);
+    text-decoration: none;
+    font-weight: 100; }
+    #courses .course-wrapper:hover p {
+      color: var(--tree-green); }
+
+.browse {
+  background: rgba(255, 255, 255, 0);
+  text-align: center;
+  font-family: var(--brandon-bold);
+  font-size: 0.9rem; }
+  .browse a {
+    color: var(--tree-green);
+    text-decoration: none; }
+
+@media only screen and (max-width: 768px) {
+  #courses {
+    grid-template-columns: 1fr 1fr; } }
+
+/*# sourceMappingURL=course_list.css.map */

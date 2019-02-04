@@ -1,0 +1,32 @@
+.search-input {
+  flex: 1;
+  margin: 0px 0.6rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  input {
+    background: rgba(255, 255, 255, 1);
+    border: 1px solid #bbbaba;
+    border-radius: 0px;
+    height: var(--search-height);
+    text-indent: 2.4rem;
+    font-family: var(--brandon-reg);
+    font-size: var(--font-size);
+    caret-color: var(--tree-green);
+    &::placeholder {
+      color: rgba(158, 158, 158, 1);
+    }
+    width: 100%;
+    &:focus {
+      border-color: var(--tree-green);
+      outline: 0;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+    }
+  }
+  img {
+    position: absolute;
+    left: 0.8rem;
+    width: 0.95rem;
+  }
+}

@@ -1,0 +1,31 @@
+$course-color: #F0F0F0;
+.chat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  grid-gap: 2rem 2rem;
+  margin-top: 3rem;
+  .chat-card {
+    box-sizing: border-box;
+    box-shadow: 1px 1px $course-color;
+    border-radius: 5px;
+    padding: 0.3rem;
+    p {
+      padding-bottom: 0.5rem;
+    }
+    p.card-title {
+      color: black;
+      font-family: var(--brandon-bold);
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+    &:hover {
+      border: 0.01rem solid var(--course-color);
+      box-shadow: 0 0.25rem 0.5rem var(--course-color);
+      text-decoration: none;
+      font-weight: 100;
+      p {
+        color: var(--tree-green);
+      }
+    }
+  }
+}

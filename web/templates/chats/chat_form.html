@@ -1,0 +1,15 @@
+{% extends "chats/chat_base.html" %}
+
+{% load staticfiles %} 
+{% load bootstrap3 %}
+
+
+{% block chat_content %}
+<link rel="stylesheet" href="{% static 'css/accounts/signup.css'%}">
+<h1>Create New Chat</h1>
+<form method="POST" action="{% url 'chats:create' %}" id="chatForm">
+	{% csrf_token %}
+	{{ form }}
+	<input type="submit" value="Create New Chat" class="btn btn-green btn-large">
+</form>
+{% endblock %}

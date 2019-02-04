@@ -1,0 +1,46 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("fonts/FontAwesome.otf"); }
+@font-face {
+  font-family: 'Anticon';
+  src: url("fonts/anticon.ttf"); }
+@font-face {
+  font-family: 'Ionicons';
+  src: url("fonts/ionicons.ttf"); }
+@font-face {
+  font-family: 'simple-line-icons';
+  src: url("fonts/Simple-Line-Icons.ttf"); }
+@font-face {
+  font-family: 'Material';
+  src: url("fonts/material.ttf"); }
+@font-face {
+  font-family: "BrandonText-Medium";
+  src: url("fonts/BrandonText-Medium.otf") format("opentype"); }
+@font-face {
+  font-family: "BrandonText-Regular";
+  src: url("fonts/BrandonText-Regular.otf") format("opentype"); }
+@font-face {
+  font-family: "BrandonText-Bold";
+  src: url("fonts/BrandonText-Bold.otf") format("opentype"); }
+@font-face {
+  font-family: "CircularStd-Medium";
+  src: url("fonts/CircularStd-Medium.ttf"); }
+.ionicons,
+.font-awesome {
+  font-family: Ionicons;
+  font-size: 0.8rem;
+  color: #141414; }
+
+.font-awesome {
+  font-family: FontAwesome;
+  color: #141414; }
+
+.material {
+  font-family: Material;
+  color: #141414; }
+
+.line-icon {
+  font-family: 'simple-line-icons', Helvetica, Arial, serif;
+  color: #141414; }
+
+/*# sourceMappingURL=fonts.css.map */

@@ -1,0 +1,85 @@
+{% load staticfiles %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/accounts/view_questions.css'%}" />
+<h2>My questions</h2>
+<ul>
+  {% for room in all_rooms %}
+  <li>
+    <div class="flex">
+      <h4>{{room.room_name }}</h4>
+      <span></span>
+    </div>
+
+    {% for user_message in all_messages %}
+    {% if room.pk == user_message.chat_room_id %}
+    <div class="card">
+      <p>
+        {{user_message.message}}
+      </p>
+      <a href="/chats/{{room.room_name_slug}}"> <i class="line-icon"></i>Go to this question</a>
+
+      <div class="flex">
+        <p>{{user_message.chat_thread_respose_total }} replies</p>
+        <div class="user-img">{{user.username.0|upper }}</div>
+        <div class="user-img">{{user.username.0|upper }}</div>
+        <p>{{user_message.timestamp}}</p>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  </li>
+  {% endfor %}
+
+  <!--<li>-->
+  <!--<div class="flex">-->
+  <!--<h4>STATS 250 - Introduction to Statistics</h4>-->
+  <!--<span></span>-->
+  <!--</div>-->
+  <!--<div class="card">-->
+  <!--<p>-->
+  <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod-->
+  <!--tempor incididunt ut labore et dolore magna aliqua.-->
+  <!--</p>-->
+  <!--<a href="#"> <i class="line-icon"></i>Go to this question</a>-->
+  <!--<div class="flex">-->
+  <!--<p>2 replies</p>-->
+  <!--<div class="user-img">{{user.username.0|upper }}</div>-->
+  <!--<div class="user-img">{{user.username.0|upper }}</div>-->
+  <!--<p>Mar 29, 2018 at 3:12 PM</p>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</li>-->
+  <!--<li>-->
+  <!--<div class="flex">-->
+  <!--<h4>POLS 1030 - Modern Political Thought</h4>-->
+  <!--<span></span>-->
+  <!--</div>-->
+  <!--<div class="card">-->
+  <!--<p>-->
+  <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.-->
+  <!--</p>-->
+  <!--<a href="#"> <i class="line-icon"></i>Go to this question</a>-->
+  <!--<div class="flex">-->
+  <!--<p>15 replies</p>-->
+  <!--<div class="user-img">{{user.username.0|upper }}</div>-->
+  <!--<div class="user-img">{{user.username.0|upper }}</div>-->
+  <!--<p>Mar 29, 2018 at 3:12 PM</p>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--<div class="card">-->
+  <!--<p>-->
+  <!--Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.-->
+  <!--</p>-->
+  <!--<a href="#"> <i class="line-icon"></i>Go to this question</a>-->
+  <!--<div class="flex">-->
+  <!--<p>2 replies</p>-->
+  <!--<div class="user-img">{{user.username.0|upper }}</div>-->
+  <!--<div class="user-img">{{user.username.0|upper }}</div>-->
+  <!--<p>Mar 29, 2018 at 3:12 PM</p>-->
+  <!--</div>-->
+  <!--</div>-->
+  <!--</li>-->
+</ul>
+
+
+
+{% endblock %}

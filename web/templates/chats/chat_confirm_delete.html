@@ -1,0 +1,17 @@
+{% extends "chats/chat_base.html" %}
+
+
+{% block chat_content %}
+<h3>Are you sure you want to delete this chat?</h3>
+
+<div class="chats">
+	{% include "chats/_chat.html" with post=object hide_delete=True %}
+</div>
+
+<form method="POST">
+	{% csrf_token %}
+	<input type="submit" value="Confirm Delete" class="btn btn-danger btn-large">
+	<a href="{% url 'chats:single' username=user.username pk=object.pk %}" class="btn btn-simple btn-large btn-default">Cancel</a>
+</form>
+
+{% endblock %}

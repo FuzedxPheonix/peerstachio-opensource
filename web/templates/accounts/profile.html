@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+
+{% load staticfiles %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/accounts/signup.css'%}">
+
+<form>
+
+{% csrf_token %}
+
+<h1>Profile</h1>
+<br>
+<p>Display Name: {{user}} </p>
+<br>
+<p>Email: {{user.email}}</p>
+<br>
+<p>Rating: <span id="pistachios">{{user.profile.rating}}</span> Pistachios</p>
+<br>
+<br>
+
+<span class="vote font-awesome" data-vote = "up"></span>
+<span class="vote font-awesome" data-vote = "down"></span>
+<span class="vote font-awesome" data-vote = "undo"></span>
+<style>
+  .vote:hover {
+    cursor: pointer;
+  }
+  .vote {
+    user-select: none;
+    color: #bbbaba;
+    font-size: 25px;
+  }
+</style>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+<script>
+  $(document).ready(function () {
+    var csrftoken = Cookies.get('csrftoken');
+    var user_pk = {{user.pk}};
+    function vote() {
+      $.post({
+        url: '/accounts/profile/add-pistachio/' + user_pk + '/' + $(this).attr("data-vote") + '/',
+        headers: {
+          // HTTP_X_REQUESTED: 'XMLHttpRequest'
+          'X-CSRFToken': csrftoken
+        },
+      }).done(function (data) {
+          console.log(data)
+          if (data.success == true) {
+            $('#pistachios').text(data.rating);
+          } else {
+            alert('ERROR: ' + data.error_message);
+          }
+        })
+    }
+  
+  var voters = document.getElementsByClassName("vote");
+  for (var i = 0; i <  voters.length; ++i) {
+    voters[i].addEventListener('click', vote, false);
+  }
+})
+</script>
+<br>
+<br>
+<br>
+<p><a class="btn btn-yellow" href="{% url 'accounts:edit_profile' %}">Edit Account</a></p>
+</form>
+<br>
+{% endblock %}

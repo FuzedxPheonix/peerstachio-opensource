@@ -1,0 +1,160 @@
+.buttons {
+	display: inline-block;
+	position: absolute;
+	margin-left: 1060px;
+	margin-top: 10px;
+	z-index: 9;
+}
+
+.buttons li {
+	display: inline-block;
+	position: relative;
+}
+
+.buttons button {
+	position: absolute;
+	display: inline-block;
+}
+
+.login {
+	height: 40px;
+	width: 94px;
+	font-size: 13px;
+	display: inline-block;
+	background-color: transparent;
+	border: 1px solid;
+	margin-left: -100px;
+}
+
+.signup {
+	background-color: gold;
+	height: 40px;
+	width: 94px;
+	font-size: 13px;
+	display: inline-block;
+	border: none;
+}
+
+.logo {
+	height: 60px;
+	width: 200px;
+	position: relative;
+	margin-top: 15px;
+}
+
+.menu {
+	position: absolute;
+	margin-left: -20px;
+	display: inline-block;
+	margin-top: 30px;
+}
+
+.menu li {
+	display: inline-block;
+	position: relative;
+	margin-left: 25px;
+	font-size: 18px;
+}
+
+.menu li a {
+	text-decoration: none;
+	color: #343434;
+	font-family: helvetica;
+}
+
+.menu li a:hover {
+	color: skyblue;
+}
+
+#gray {
+	background-color: lightgray;
+	height: 600px;
+	width: 100%;
+	margin-top: 30px;
+}
+
+#gray #divtop {
+	border-top: 3px;
+	border-bottom: 3px;
+	height: 200px;
+	width: 100%;
+	position: relative;
+	background-color: #F5F5F5;
+}
+
+#gray #divbottom {
+	background-color: #F5F5F5;
+	position: absolute;
+	width: 100%;
+	height: 470px;
+	margin-top: 150px;
+	border-top: 1px solid #E8E8E8;
+}
+
+#gray h1 {
+	font-size: 44px;
+	font-family: helvetica;
+	font-weight: lighter;
+	text-align: center;
+	position: absolute;
+	margin: 0 auto; 
+	width: 50%;
+	color: #00A73B;
+	margin-top: 50px;
+	left: 25%;
+}
+
+#gray form {
+}
+
+#gray form h3 {
+	font-size: 16px;
+	font-family: Helvetica;
+	font-weight: 400;
+	color: #343434;
+	margin-bottom: -10px;
+	text-align: left;
+	margin-left: 544px;
+}
+
+#gray #forminput {
+	height: 50px;
+	width: 336px;
+	margin-bottom: 10px;
+}
+
+#loginbox {
+	text-align: center;
+	margin-top: 60px;
+}
+
+#button2 {
+	margin-left: 247px;
+	margin-top: 20px;
+}
+
+#triangle-right {
+	width: 0;
+	height: 0px;
+	margin-top: 200px;
+	border-top: 270px solid transparent;
+	border-left: 300px solid #62CDAC;
+	border-bottom: 270px solid transparent;
+	position: absolute;
+	z-index: 10;
+}
+
+#triangle-down {
+	width: 0;
+	height: 0;
+	margin-left: 1000px;
+	border-left: 260px solid transparent;
+	border-right: 260px solid transparent;
+	border-top: 230px solid #62CDAC;
+	position: absolute;
+	z-index: 8;
+}
+
+
+
+

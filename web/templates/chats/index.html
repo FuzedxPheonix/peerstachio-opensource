@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block title %} {{block.super}}: Chat {% endblock title %} {% load staticfiles %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/courses/course_list.css'%}">
+<!-- <link rel="stylesheet" href="{% static 'css/chat/index.css'%}"> -->
+<h3 class="section-header">
+  Here's all the courses that you can join!
+</h3>
+<br>
+<br>
+<div id="courses">
+  {% for room in rooms %}
+  <div class="course-wrapper">
+      <div class="course">
+          <p class="course-num">{{room.room_name}}</p>
+          <div class="line-icon star"></div>
+          <p class="course-name">{{room.description}}</p>
+          <div class="line-icon hat"></div>
+          <div class="course-info university">8 members</div>
+          <div class="line-icon medal"></div>
+          <div class="course-info specialist">2 specialists</div>
+
+      </div>
+      <div class="divider"></div>
+      <div class="currently">
+          <p>Currently online:</p>
+          <br>
+          <div class="online">
+              <img src="/static/images/logged-in(1).png">
+              <img src="/static/images/logged-in(2).png">
+              <img src="/static/images/logged-in(3).png">
+              <img src="/static/images/logged-in(4).png">
+              <a class="btn btn-green" href="{{room.room_name_slug}}">Join Room</a>
+          </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

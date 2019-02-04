@@ -1,0 +1,149 @@
+{% load staticfiles %} {% block content %}
+<link rel="stylesheet" href="{% static 'css/accounts/profile_settings.css'%}" />
+<h2>Account Settings</h2>
+
+{% if messages %}
+<ul class="toaster">
+  {% for message in messages %}
+  <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+    {% if message.tags == "success" %} <i>✓</i>
+    <!-- - -->
+    {% elif message.tags == "error"%} <i>✕</i>
+    <!-- - -->
+    {% endif %} {{ message }}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<div class="grid">
+  <div class="left">
+    <form method="POST" action="/accounts/edit/" class="edit_profile">
+      {% csrf_token %}
+      <div>
+        <h3>{{ email_form.email.label_tag }}</h3>
+        {{ email_form.email }}
+        <ul class="errorlist">
+          {% if email_form.email.errors %}
+          <!-- - -->
+          {% for error in email_form.email.errors %}
+          <li>{{ error }}</li>
+          {% endfor %}
+          <!-- - -->
+          {% endif %}
+        </ul>
+        <p>{{ email_form.email.help_text }}</p>
+      </div>
+
+      <div>
+        <h3>{{ password_form.old_password.label_tag }}</h3>
+
+        <input
+          type="password"
+          name="old_password"
+          id="id_old_password"
+          placeholder="************"
+        />
+        <ul class="errorlist">
+          {% if password_form.old_password.errors %}
+          <!-- - -->
+          {% for error in password_form.old_password.errors %}
+          <li>{{ error }}</li>
+          {% endfor %} {% endif %}
+        </ul>
+      </div>
+      <div>
+        <h3>{{ password_form.new_password1.label_tag }}</h3>
+
+        <input
+          type="password"
+          name="new_password1"
+          id="id_new_password1"
+          aria-autocomplete="list"
+          placeholder="************"
+        />
+        <ul class="errorlist">
+          {% if password_form.new_password2.errors %}
+          <!-- - -->
+          {% for error in password_form.new_password2.errors %}
+          <li>{{ error }}</li>
+          {% endfor %} {% endif %}
+        </ul>
+        <div>
+          <p>Password must be at least 9 characters long and include:</p>
+          <p><i class="font-awesome"></i>an uppercase character</p>
+          <p><i class="font-awesome"></i>a number</p>
+          <p><i class="font-awesome"></i>a special character</p>
+        </div>
+      </div>
+      <div>
+        <h3>{{ password_form.new_password2.label_tag }}</h3>
+
+        <input
+          type="password"
+          name="new_password2"
+          id="id_new_password2"
+          placeholder="************"
+        />
+        {% if password_form.new_password1.errors %}
+        <ul class="errorlist">
+          {% for error in password_form.new_password1.errors %}
+          <li>{{ error }}</li>
+        </ul>
+        {% endfor %} {% endif %}
+      </div>
+      <input
+        style="margin-bottom: 0;"
+        type="submit"
+        value="Update Account Settings"
+        class="btn btn-green"
+      />
+    </form>
+    <script>
+      document.querySelector('form').addEventListener('submit', function(e) {
+        let old_pw_val = document.querySelector('#id_old_password').value
+        let new_pw1_val = document.querySelector('#id_new_password1').value
+        let new_pw2_val = document.querySelector('#id_new_password2').value
+        let old_pw = document.querySelector('#id_old_password')
+        let new_pw1 = document.querySelector('#id_new_password1')
+        let one_pwfield_empty =
+          (old_pw_val == '') | (new_pw1_val == '') | (new_pw2_val == '')
+
+        let one_pwfield_filled =
+          (old_pw_val != '') | (new_pw1_val != '') | (new_pw2_val != '')
+
+        if (one_pwfield_empty && one_pwfield_filled) {
+          e.preventDefault()
+          let li = document.createElement('li')
+          li.innerHTML = 'Not all password fields are filled.'
+          let list = old_pw.nextElementSibling
+          if (list.length != 0) {
+            list.removeChild(list.childNodes[0])
+          }
+          old_pw.nextElementSibling.appendChild(li)
+        } else if (new_pw1_val != new_pw2_val) {
+          e.preventDefault()
+          let li = document.createElement('li')
+          li.innerHTML = `New passwords don't match.`
+          let list = new_pw1.nextElementSibling
+          if (list.length != 0) {
+            list.removeChild(list.childNodes[0])
+          }
+          new_pw1.nextElementSibling.appendChild(li)
+        } else if (new_pw1_val.length < 9 || new_pw2_val.length < 9) {
+          e.preventDefault()
+          let li = document.createElement('li')
+          li.innerHTML = `New password must fulfill the criteria below.`
+          let list = new_pw1.nextElementSibling
+          if (list.length != 0) {
+            list.removeChild(list.childNodes[0])
+          }
+          new_pw1.nextElementSibling.appendChild(li)
+        }
+      })
+    </script>
+  </div>
+  <br />
+</div>
+
+{% endblock %}

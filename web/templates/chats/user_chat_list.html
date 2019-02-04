@@ -1,0 +1,16 @@
+{% extends "chats/chat_base.html" %}
+
+{% block prechat %}
+<div>
+	<h1>@{{ chat_user.username }}</h1>
+	<p>Post History</p>
+</div>
+{% endblock %}
+
+{% block chat_content %}
+<div>
+	{% for chat in chat_list %}
+		{% include "chats/_chat.html" %}
+	{% endfor %}
+</div>
+{% endblock %}

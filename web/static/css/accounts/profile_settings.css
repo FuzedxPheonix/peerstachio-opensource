@@ -1,0 +1,39 @@
+.form-select-wrapper {
+  position: relative;
+  width: 120px;
+  background: white; }
+
+.edit_profile h3 {
+  font-family: var(--brandon-bold);
+  font-size: 16px;
+  margin-bottom: 10px; }
+.edit_profile > div {
+  margin-bottom: 30px; }
+  .edit_profile > div > div {
+    margin-top: 10px; }
+.edit_profile input {
+  height: 50px;
+  width: 400px;
+  padding-left: 20px; }
+.edit_profile input[type='submit'] {
+  height: 40px; }
+.edit_profile #id_grad_year {
+  display: none; }
+.edit_profile .ionicons {
+  position: absolute;
+  left: 93px;
+  top: 15px;
+  font-size: 20px;
+  color: #9f9e9f; }
+.edit_profile .font-awesome {
+  margin: 10px 12px 10px 0;
+  color: #878787; }
+.edit_profile .btn-green {
+  margin-top: 20px;
+  height: 50px;
+  width: 400px;
+  background: var(--tree-green);
+  color: white;
+  font-size: 14px; }
+
+/*# sourceMappingURL=profile_settings.css.map */

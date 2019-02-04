@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg class="logo-svg" height="17px" viewBox="0 0 42 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+    <title>Peerstachio Logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-13.000000, -17.000000)">
+            <g id="Group-2" transform="translate(15.000000, 18.000000)">
+                <g id="Group" transform="translate(0.000000, 1.000000)" fill-rule="nonzero">
+                    <path d="M6.19687928,0.826843686 L18.401212,16.1118352 L30.5343913,0.764067869 C34.3768335,4.13662151 36.8024241,9.08444122 36.8024241,14.598788 C36.8024241,24.7614968 28.5639208,33 18.401212,33 C8.23850325,33 0,24.7614968 0,14.598788 C0,9.11855696 2.39567051,4.19786478 6.19687928,0.826843686 Z" id="Combined-Shape" stroke="#1EA348" stroke-width="3" fill="#FFFFFF"></path>
+                    <path d="M10,3.76868462 L18.0390589,15.3202889 L26.372973,3.76868462 C24.127248,1.76560679 21.3984192,0.764067869 18.1864865,0.764067869 C14.9745538,0.764067869 12.245725,1.76560679 10,3.76868462 Z" id="Path" fill="#1EA348"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,75 @@
+{% load staticfiles%}
+<header class="top-menu">
+  {% if user.is_authenticated %}
+  <div class="home-user">
+    <a class="logo" href="{% url 'home' %}">
+      <img src="{% static 'images/Peerstachio_icon.PNG' %}">
+      <p><span>Peer</span>stachio</p>
+    </a>
+    <a href="{% url 'home' %}" class="menu-item">
+      <i class="ionicons"></i>
+      <p>Home</p>
+      <span></span>
+    </a>
+    <a href="{% url 'chats:all_rooms' %}" class="menu-item last">
+      <i class="ionicons"></i>
+      <p>Chat</p>
+      <span></span>
+    </a>
+    <link rel="stylesheet" href="{% static 'css/searchbar.css'%}">
+    <div class="search-input">
+      <input type="text" placeholder="Find your question, a course or subject…">
+      <img src="{% static 'images/search.png' %}" />
+    </div>
+    <div id="user-dropdown">
+      <!-- {{request.user.username}} Picture -->
+      <!-- <img src="{% static 'images/specialist (1).png' %}"> -->
+      <!-- <div class="menu-user-img"></div> -->
+      <div class="user-img">{{user.username.0|upper }}</div>
+      <i class="ionicons"></i>
+      <div class="dropdown">
+        <a href="{% url 'accounts:edit_account' %}">Account Settings</a>
+        {% if user.is_superuser %}
+        <a href="{% url 'accounts:view_profile' %}">Profile</a>
+        {% endif %}
+        <a href="{% url 'accounts:logout' %}">Log Out</a>
+      </div>
+    </div>
+    <script>
+      var user_drop = document.getElementById("user-dropdown");
+      var dropdown = document.querySelector(".dropdown");
+      user_drop.addEventListener("click", showDropdown);
+
+      function showDropdown() {
+        if (dropdown.style.display == "flex") {
+          dropdown.style.display = "none";
+        } else {
+          dropdown.style.display = "flex";
+        }
+      }
+
+      var menu_items = document.getElementsByClassName('menu-item');
+      if (window.location.pathname == "/") {
+        menu_items[0].classList.add("active");
+      }
+      var regex = "/chats"
+      var r = new RegExp(regex);
+      if (r.test(window.location.pathname)) {
+        menu_items[1].classList.add("active");
+      }
+    </script>
+  </div>
+  {% else %}
+  <div class="home-welcome">
+    <a class="logo" href="{% url 'home' %}">
+      <img src="{% static 'images/Peerstachio_icon.PNG' %}">
+      <p><span>Peer</span>stachio</p>
+    </a>
+    <a href="{% url 'home' %}" class="menu-item">Home</a>
+    <a href="https://www.linkedin.com/company/peerstachio/" target="_blank" class="menu-item last">About</a>
+    <a href="{% url 'accounts:login' %}" class="btn log-in">LOG IN</a>
+    <a href="{% url 'accounts:signup' %}" class="btn btn-yellow">SIGN UP</a>
+  </div>
+  {% endif %}
+  <!-- <hr> -->
+</header>

@@ -1,0 +1,47 @@
+.container > div {
+  padding-top: 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 4.68vw;
+  align-items: center;
+  justify-items: center;
+}
+
+#intro {
+  p {
+    font-size: 20px;
+    color: #40403d;
+    text-align: justify;
+  }
+  p:first-child {
+    font: {
+      family: var(--brandon-bold);
+      size: 55px;
+    }
+    color: var(--peerstachio-green);
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    margin-top: 30px;
+    height: 44ppx;
+    width: 165px;
+    font-size: 14px;
+  }
+}
+
+img {
+  width: 100%;
+}
+
+
+@media only screen and (max-width: 850px) {
+  .container > div {
+    grid-template-columns: 1fr;
+  }
+  #intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

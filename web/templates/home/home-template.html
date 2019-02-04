@@ -1,0 +1,16 @@
+{% extends "base.html" %} 
+
+{% load staticfiles%} 
+
+{% block content %}
+
+    {% if user.is_authenticated %}
+        {% include "home/home-user.html" %}
+
+    {% else %}
+        {% include "home/home-welcome.html" %}
+
+    {% endif %}
+
+
+{% endblock %}

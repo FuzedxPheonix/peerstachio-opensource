@@ -1,0 +1,83 @@
+#courses {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 2rem;
+    .course {
+        display: grid;
+        grid-template-columns: 1.4rem 1fr 1rem;
+        grid-template-rows: auto 2.5rem 1.3rem 1rem;
+        grid-row-gap: 0.01rem;
+        grid-template-areas: "course-num course-num star" "course-name course-name course-name" "hat university university" "medal specialist specialist";
+        padding: 1.3rem;
+        background: white;
+        border: 0.01rem solid white;
+        // border-radius: 0.2rem;
+        box-shadow: 0 0.1rem 0.2rem var(--course-color);
+        p {
+            color: black;
+            font-family: var(--brandon-reg);
+        }
+        .course-num {
+            font-size: 1rem;
+            font-weight: 900;
+            grid-area: course-num;
+            padding-bottom: 0.5rem;
+        }
+        .course-name{
+            font-size: 0.9rem;
+        }
+        .course-info,
+        .line-icon {
+            color: rgba(128, 128, 128, 1.0);
+            font-size: 0.8rem;
+        }
+        .star {
+            grid-area: star;
+            justify-self: end;
+            color: var(--tree-green);
+        }
+        .course-name {
+            grid-area: course-name;
+        }
+        .hat {
+            grid-area: hat;
+        }
+        .university {
+            grid-area: university;
+        }
+        .medal {
+            grid-area: medal;
+            align-self: center;
+        }
+        .specialist {
+            grid-area: specialist;
+            align-self: center;
+        }
+        
+    }
+    a {
+        &:hover {
+            border: 0.01rem solid var(--course-color);
+            box-shadow: 0 0.25rem 0.5rem var(--course-color);
+            text-decoration: none;
+            font-weight: 100;
+            p {
+                color: var(--tree-green);
+            }
+        }
+    }
+}
+
+.browse {
+    background: rgba(255, 255, 255, 0.0);
+    text-align: center;
+    font: {
+        family: var(--brandon-bold);
+        size: 0.9rem;
+    }
+    a {
+        color: var(--tree-green);
+        text-decoration: none;
+    }
+}

@@ -1,0 +1,47 @@
+{% load staticfiles%}
+<div class="home grid">
+    <link rel="stylesheet" href="{% static 'css/home/home-courses.css'%}">
+    <link rel="stylesheet" href="{% static 'css/home/home-user.css'%}">
+    <div class="left">
+        <div class="card profile">
+            <!-- <img class="user-img" src="{% static 'images/specialist (1).png' %}"> -->
+            <div class="user-img">{{user.username.0|upper }}</div>
+            <div class="name">{{user}}</div>
+            <div class="uni">University of Michigan</div>
+            <div class="rating">{% include "svg/peerstachio-logo.svg" %}{{user.profile.rating}} times thanked</div>
+            <!-- <a class="settings" ><i class="line-icon"></i></a> -->
+        </div>
+        <div class="card shortcuts">
+            <a href="{% url 'home' %}"><i class="line-icon"></i>Courses </a>
+            <a href="{% url 'accounts:view_questions' %}"><i class="line-icon"></i>Questions</a>
+            <a href="{% url 'accounts:edit_profile' %}"><i class="line-icon"></i>Profile Settings</a>
+            <!-- <div><i class="line-icon"></i>Messages <i class=" green"></i></div> -->
+        </div>
+        <script>
+            var menu_items = document.querySelectorAll('.shortcuts a');
+            if (window.location.pathname == "/") {
+                menu_items[0].classList.add("active");
+            } else {
+                let list = window.location.pathname.split('/')
+                if (list[2]=="profile") {
+                    menu_items[2].classList.add("active");
+                } else if (list[2]=="questions"){
+                    menu_items[1].classList.add("active");
+                }
+            }
+        </script>
+    </div>
+
+    <div class="right">
+        {% if page == "home" %}
+            {% include 'home/home-courses.html' %}
+        {% elif page == "profile" %}
+            {% include 'accounts/profile_settings.html' %}
+        {% elif page == "account_settings" %}
+            {% include 'accounts/account_settings.html' %}
+        {% elif page == "view_questions" %}
+            {% include 'accounts/view_questions.html' %}
+        {% endif %}
+    </div>
+
+</div>
