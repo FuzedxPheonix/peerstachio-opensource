@@ -18,8 +18,10 @@ services:
     env_file: .env
     environment:
       DEBUG: 'true'
+      REDIS_URL: redis
     # command: /home/django/.local/bin/gunicorn peerstachio.wsgi:application -w 2 -b :8000
-    command: /home/django/.local/bin/gunicorn peerstachio.wsgi:application -w 2 -b 0.0.0.0:8000 
+    command: daphne -b 0.0.0.0 -p 8000 peerstachio.asgi:application
+    # command: /home/django/.local/bin/gunicorn peerstachio.wsgi:application -w 2 -b 0.0.0.0:8000 --capture-output --log-level debug
     depends_on:
       - postgres
       - redis
