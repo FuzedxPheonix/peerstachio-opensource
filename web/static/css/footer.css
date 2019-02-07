@@ -2,7 +2,8 @@ footer {
   background: white;
   height: 106px;
   margin: 0 auto;
-  width: 100%; }
+  width: 100%;
+}
 
 .footer {
   margin: auto;
@@ -12,24 +13,29 @@ footer {
   justify-content: flex-start;
   padding: 2rem 1rem;
   width: 100%;
-  font-size: 0.8rem; }
-  .footer p {
-    margin-right: auto;
-    color: var(--peerstachio-grey); }
-  .footer .round-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-color: #1e3a4e;
-    width: 1.4rem;
-    height: 1.4rem;
-    margin-right: 0.4rem;
-    border-radius: 100%;
-    font-size: 0.8rem; }
-    .footer .round-btn i {
-      margin-top: 1px; }
-  .footer .font-awesome {
-    font-size: 0.7rem; }
+  font-size: 0.8rem;
+}
+.footer p {
+  margin-right: auto;
+  color: var(--peerstachio-grey);
+}
+.footer .round-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: #1e3a4e;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-right: 0.4rem;
+  border-radius: 100%;
+  font-size: 0.8rem;
+}
+.footer .round-btn i {
+  margin-top: 1px;
+}
+.footer .font-awesome {
+  font-size: 0.7rem;
+}
 
 /*# sourceMappingURL=footer.css.map */

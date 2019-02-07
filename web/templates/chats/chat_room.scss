@@ -4,7 +4,7 @@ body,
 .container,
 .top-menu .home-user {
   max-width: none;
-  overflow-y: hidden;
+  // overflow-y: hidden;
 }
 
 /* remove footer to make space for chat app */
@@ -91,7 +91,7 @@ body {
     margin-right: 1rem;
   }
 
-  span {
+  & > p > span {
     margin-right: 0.3rem;
   }
 
@@ -108,7 +108,8 @@ body {
     display: none;
     overflow-y: auto;
     height: 350px;
-    max-width: 1400px;
+    width: 70%;
+    max-width: 1000px;
     .message-container {
       max-width: none;
       grid-template-columns: 54px auto;

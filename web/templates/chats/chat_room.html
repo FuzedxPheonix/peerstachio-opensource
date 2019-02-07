@@ -165,6 +165,7 @@
 
     function showQs() {
       var menuClasses = document.querySelector(".unanswered-qs-dropdown").classList;
+
       if (menuClasses.contains('show')) {
         menuClasses.remove('show');
         document.querySelector("#messages").removeEventListener('click', showQs);
@@ -173,12 +174,14 @@
         document.querySelector(".thread-wrapper").removeEventListener('click', showQs);
         document.querySelector("#message-form").removeEventListener('click', showQs);
       } else {
-        menuClasses.add("show");
-        document.querySelector("#messages").addEventListener('click', showQs);
-        document.querySelector(".chat-list").addEventListener('click', showQs);
-        document.querySelector(".chat-details").addEventListener('click', showQs);
-        document.querySelector(".thread-wrapper").addEventListener('click', showQs);
-        document.querySelector("#message-form").addEventListener('click', showQs);
+        if (document.querySelector("#top-list-question").dataset.qsnum > 0) {
+          menuClasses.add("show");
+          document.querySelector("#messages").addEventListener('click', showQs);
+          document.querySelector(".chat-list").addEventListener('click', showQs);
+          document.querySelector(".chat-details").addEventListener('click', showQs);
+          document.querySelector(".thread-wrapper").addEventListener('click', showQs);
+          document.querySelector("#message-form").addEventListener('click', showQs);
+        }
       }
     }
   </script>

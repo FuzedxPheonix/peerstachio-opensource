@@ -1,36 +1,46 @@
 form {
   line-height: 1.15;
   margin: auto;
-  width: 400px; }
-  form * {
-    width: 100%; }
-  form input {
-    height: 50px;
-    padding-left: 20px; }
-    form input::-webkit-input-placeholder {
-      /* WebKit, Blink, Edge */
-      color: #bbbaba; }
-    form input:-moz-placeholder {
-      /* Mozilla Firefox 4 to 18 */
-      color: #bbbaba;
-      opacity: 1; }
-    form input::-moz-placeholder {
-      /* Mozilla Firefox 19+ */
-      color: #bbbaba;
-      opacity: 1; }
-    form input:-ms-input-placeholder {
-      /* Internet Explorer 10-11 */
-      color: #bbbaba; }
-  form p,
-  form .font-awesome {
-    margin: 10px 12px 10px 0;
-    color: #878787; }
-  form h3 {
-    margin: 30px 0 10px 0;
-    font-family: var(--brandon-bold);
-    font-size: 16px; }
-  form .btn {
-    margin-top: 54px;
-    margin-bottom: 153px; }
+  width: 400px;
+}
+form * {
+  width: 100%;
+}
+form input {
+  height: 50px;
+  padding-left: 20px;
+}
+form input::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #bbbaba;
+}
+form input:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #bbbaba;
+  opacity: 1;
+}
+form input::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #bbbaba;
+  opacity: 1;
+}
+form input:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #bbbaba;
+}
+form p,
+form .font-awesome {
+  margin: 10px 12px 10px 0;
+  color: #878787;
+}
+form h3 {
+  margin: 30px 0 10px 0;
+  font-family: var(--brandon-bold);
+  font-size: 16px;
+}
+form .btn {
+  margin-top: 54px;
+  margin-bottom: 153px;
+}
 
 /*# sourceMappingURL=signup.css.map */

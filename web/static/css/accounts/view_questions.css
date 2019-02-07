@@ -1,62 +1,79 @@
 li > .flex {
-  justify-content: flex-start; }
-  li > .flex h4 {
-    font-size: 18px;
-    letter-spacing: 0.3px;
-    color: #828181;
-    margin-right: 16px; }
-  li > .flex span {
-    border-bottom: solid 1.3px var(--white);
-    flex: 1;
-    height: 0.01px; }
+  justify-content: flex-start;
+}
+li > .flex h4 {
+  font-size: 18px;
+  letter-spacing: 0.3px;
+  color: #828181;
+  margin-right: 16px;
+}
+li > .flex span {
+  border-bottom: solid 1.3px var(--white);
+  flex: 1;
+  height: 0.01px;
+}
 
 li {
-  font-size: 18px; }
-  li .card {
-    margin-top: 20px;
-    padding: 20px 25px;
-    grid-template-columns: auto 180px;
-    grid-column-gap: 60px;
-    grid-row-gap: 20px; }
-    li .card p {
-      justify-self: start;
-      text-align: justify; }
-    li .card:last-child {
-      margin-bottom: 50px; }
-  li a {
-    align-self: start;
-    margin-top: 15px;
-    display: flex;
-    align-items: center;
-    color: var(--dark-blue-grey); }
-    li a i {
-      margin-right: 10px; }
-    li a:hover {
-      color: var(--dark-blue-grey); }
-  li .flex {
-    position: relative;
-    justify-content: flex-start;
-    justify-self: start; }
-    li .flex p {
-      font-size: 14px; }
-    li .flex p:first-child {
-      font-weight: bold;
-      letter-spacing: 0.4px;
-      margin-right: 60px;
-      margin-left: 75px; }
-    li .flex p:last-child {
-      color: var(--warm-grey);
-      position: absolute;
-      left: 204px;
-      width: 100%; }
-    li .flex .user-img {
-      position: absolute;
-      border: 2px white solid; }
-    li .flex :nth-child(2) {
-      z-index: 1;
-      left: 30px; }
-    li .flex :nth-child(1) {
-      z-index: 2;
-      left: 0px; }
+  font-size: 18px;
+}
+li .card {
+  margin-top: 20px;
+  padding: 20px 25px;
+  grid-template-columns: auto 180px;
+  grid-column-gap: 60px;
+  grid-row-gap: 20px;
+}
+li .card p {
+  justify-self: start;
+  text-align: justify;
+}
+li .card:last-child {
+  margin-bottom: 50px;
+}
+li a {
+  align-self: start;
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  color: var(--dark-blue-grey);
+}
+li a i {
+  margin-right: 10px;
+}
+li a:hover {
+  color: var(--dark-blue-grey);
+}
+li .flex {
+  position: relative;
+  justify-content: flex-start;
+  justify-self: start;
+}
+li .flex p {
+  font-size: 14px;
+}
+li .flex p:first-child {
+  font-weight: bold;
+  letter-spacing: 0.4px;
+  margin-right: 60px;
+  margin-left: 75px;
+}
+li .flex p:last-child {
+  color: var(--warm-grey);
+  position: absolute;
+  left: 204px;
+  width: 100%;
+}
+li .flex .user-img {
+  position: absolute;
+  border: 2px white solid;
+}
+li .flex :nth-child(2) {
+  z-index: 1;
+  left: 30px;
+}
+li .flex :nth-child(1) {
+  z-index: 2;
+  left: 0px;
+}
 
 /*# sourceMappingURL=view_questions.css.map */

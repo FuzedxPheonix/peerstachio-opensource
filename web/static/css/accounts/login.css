@@ -3,24 +3,31 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100%; }
-  .login form {
-    width: 18rem; }
-    .login form label {
-      font-family: var(--brandon-bold);
-      font-size: 0.9rem; }
-    .login form input {
-      width: 100%;
-      margin-top: 10px;
-      margin-bottom: 1.5rem;
-      height: 50px;
-      padding-left: 20px; }
-    .login form .btn-yellow {
-      cursor: pointer;
-      margin-left: auto; }
-    .login form .alert {
-      margin-bottom: 1rem; }
-      .login form .alert button {
-        display: none; }
+  width: 100%;
+}
+.login form {
+  width: 18rem;
+}
+.login form label {
+  font-family: var(--brandon-bold);
+  font-size: 0.9rem;
+}
+.login form input {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 1.5rem;
+  height: 50px;
+  padding-left: 20px;
+}
+.login form .btn-yellow {
+  cursor: pointer;
+  margin-left: auto;
+}
+.login form .alert {
+  margin-bottom: 1rem;
+}
+.login form .alert button {
+  display: none;
+}
 
 /*# sourceMappingURL=login.css.map */

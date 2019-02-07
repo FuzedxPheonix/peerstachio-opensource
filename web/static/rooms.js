@@ -12,14 +12,12 @@ $(function() {
   let $chatWindow = $("#messages");
   let $threadMessageWindow = $("#thread-messages");
   let $onlineWindow = $(".peers");
-  let $questionContainerList = $("#top-list-question");
   let $unansweredQuestions = $(".unanswered-qs-dropdown");
 
   let chatWindow = document.querySelector("#messages");
   let threadWindow = document.querySelector(".thread-wrapper");
   let threadScroll = document.querySelector(".thread-scroll");
   let onlineWindow = document.querySelector(".peers");
-  let questionContainerList = document.querySelector("#top-list-question");
   let unansweredQuestions = document.querySelector(".unanswered-qs-dropdown");
 
   function update_is_online(data) {
@@ -76,11 +74,10 @@ $(function() {
       // Gets the container of the questions on the paragraph
       // This would be the top div to make the unanswered questions
       let $divTopQuestion = $(
-        '<p onclick="showQs()"> <span id="top-list-question" class="line-icon"></span>' +
-          " " +
-          data.length +
-          " unanswered questions" +
-          "</p>"
+        `<p onclick="showQs()" id="top-list-question" 
+        data-qsnum="${data.length}">
+        <span class="line-icon"></span>
+        ${data.length} unanswered questions </p>`
       );
 
       let $onlineTop = $(".chat-top");
@@ -264,7 +261,7 @@ $(function() {
             json_response_message[0].fields.timestamp,
             $chatWindow,
             false,
-            null,
+            0,
             false
           );
         } else {
@@ -471,12 +468,12 @@ $(function() {
       ];
       $timestamp.append(
         months[dateArr[0] - 1] +
-          " " +
-          dateArr[1] +
-          ", " +
-          dateArr[2] +
-          " at " +
-          date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+        " " +
+        dateArr[1] +
+        ", " +
+        dateArr[2] +
+        " at " +
+        date.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
       );
     }
 
@@ -516,13 +513,13 @@ $(function() {
       let $reply_thread = $(
         `<div class="qs-details">
         <p>` +
-          total +
-          ` Replies</p>
+        total +
+        ` Replies</p>
         <div class="message-response">
             <span class="line-icon"></span>
             <p>Respond to ` +
-          fromUser +
-          `'s question</p>
+        fromUser +
+        `'s question</p>
         </div>
       </div>`
       );

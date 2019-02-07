@@ -73,6 +73,7 @@
     grid-row: 2/3;
     justify-self: end;
     display: flex;
+    align-items: center;
     font-size: 0.6rem;
     padding-top: 0.3rem;
     cursor: pointer;
@@ -81,6 +82,7 @@
       margin-left: 0.3rem;
       color: #1e3a4e;
       text-decoration: underline;
+      font-size: 14px;
     }
   }
 }
