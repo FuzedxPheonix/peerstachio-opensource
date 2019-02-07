@@ -7,7 +7,7 @@
 
 $(function() {
   // Reference to the chat messages area
-  console.log("User logged in as: ", username);
+  // console.log("User logged in as: ", username);
   let $app = $("#chat-app");
   let $chatWindow = $("#messages");
   let $threadMessageWindow = $("#thread-messages");
@@ -19,6 +19,8 @@ $(function() {
   let threadScroll = document.querySelector(".thread-scroll");
   let onlineWindow = document.querySelector(".peers");
   let unansweredQuestions = document.querySelector(".unanswered-qs-dropdown");
+
+
 
   function update_is_online(data) {
     var parse_data = JSON.parse(data);
@@ -47,7 +49,7 @@ $(function() {
   }
 
   function update_like(message_id) {
-    console.log("calls json");
+    // console.log("calls json");
   }
 
   // Loads all json files for the chat room
@@ -248,8 +250,8 @@ $(function() {
           time,
           json_response_message[0].fields.timestamp,
           false,
-          null,
-          false
+          0,
+          data
         );
       } else {
         if (data.is_thread) {
@@ -257,12 +259,12 @@ $(function() {
             json_response_message[0].fields.user[0],
             json_response_message[0].fields.message,
             isThread,
-            data.slug, //how are we gonna get the message id over here?
+            data.slug,
             json_response_message[0].fields.timestamp,
             $chatWindow,
             false,
             0,
-            false
+            data
           );
         } else {
           format_message(
@@ -273,8 +275,8 @@ $(function() {
             json_response_message[0].fields.timestamp,
             $chatWindow,
             false,
-            null,
-            false
+            0,
+            data
           );
 
           update_is_online(data.all_online_users);
@@ -301,7 +303,7 @@ $(function() {
         $chatWindow,
         null,
         data.fields.chat_thread_respose_total,
-        false
+        data
       );
     });
 
@@ -352,7 +354,7 @@ $(function() {
           $threadMessageWindow,
           null,
           null,
-          true
+          data
         );
       } else {
         format_message(
@@ -364,7 +366,7 @@ $(function() {
           $chatWindow,
           null,
           null,
-          true
+          data
         );
       }
     };
@@ -385,9 +387,6 @@ $(function() {
     }
   });
 
-  function update_thanks() {
-    console.log("I like this");
-  }
 
   /* 
   format_message: formats sent/received message on page
@@ -399,7 +398,7 @@ $(function() {
   @param window: window that message is sent to ($chatWindow/$threadWindow)
   @param isThreadHeader: indicate if it is the question for the thread 
   @param total: total replies to thread
-  @param test_bool: tests if say thanks works
+  @param data: entire data input
   */
   function format_message(
     fromUser,
@@ -410,38 +409,41 @@ $(function() {
     window,
     isThreadHeader = false,
     total,
-    test_bool
+    data
   ) {
     // This formats how the message is printed when the json is loaded first
     let $user_name = $('<p class="user-name">' + fromUser[0] + "</p>"); // This value is important for value
     // $user.prepend('<img class="user-img" src="/static/images/specialist (1).png" />');
     let $user_img = $(
       '<div class="user-img">' + fromUser[0].toUpperCase() + "</div>"
-    ); // This is the you are online Example
-    let $message = $('<p class="message">').text(message); // Important Keep : contains message
-    // Add time stamp message
-    let $svg = $(`<!--?xml version="1.0" encoding="UTF-8"?--><svg class="logo-svg" height="17px" viewBox="0 0 42 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
-    <title>Peerstachio Logo</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Artboard" transform="translate(-13.000000, -17.000000)">
-            <g id="Group-2" transform="translate(15.000000, 18.000000)">
-                <g id="Group" transform="translate(0.000000, 1.000000)" fill-rule="nonzero">
-                    <path d="M6.19687928,0.826843686 L18.401212,16.1118352 L30.5343913,0.764067869 C34.3768335,4.13662151 36.8024241,9.08444122 36.8024241,14.598788 C36.8024241,24.7614968 28.5639208,33 18.401212,33 C8.23850325,33 0,24.7614968 0,14.598788 C0,9.11855696 2.39567051,4.19786478 6.19687928,0.826843686 Z" id="Combined-Shape" stroke="#1EA348" stroke-width="3" fill="#FFFFFF"></path>
-                    <path d="M10,3.76868462 L18.0390589,15.3202889 L26.372973,3.76868462 C24.127248,1.76560679 21.3984192,0.764067869 18.1864865,0.764067869 C14.9745538,0.764067869 12.245725,1.76560679 10,3.76868462 Z" id="Path" fill="#1EA348"></path>
-                </g>
-            </g>
-        </g>
-    </g>
-</svg>`); // SVG is the say thank button
+    );
+    let $message = $('<p class="message">').text(message);
     let $thanks_container = $('<div class="say-thanks">');
-
-    let $say_thanks = $("<div onclick=showPopup(this) >")
-      .append($svg)
+    console.log(data.thanked)
+    let $say_thanks = $("<div onclick=showPopup(this)>")
+      .append($(svg))
       .append("<p>Say thanks to " + fromUser + "</p>");
+
+    let $you_said_thanks = $("<div style='cursor: auto;'>")
+      .append($(svg))
+      .append("<p>You said thanks to " + fromUser + "!</p>");
+    
+    console.log(data)
+    if (data.test_bool) {
+      $thanks_container.attr("booltest", true);
+    } else {
+      $thanks_container.attr("booltest", false);
+    }
+
+    if (data.thanked) {
+      $say_thanks.addClass('no-show')
+      $you_said_thanks.addClass('show')
+    } else {
+      $say_thanks.addClass('show')
+      $you_said_thanks.addClass('no-show')
+    }
     $thanks_container.append($say_thanks);
+    $thanks_container.append($you_said_thanks);
 
     let $timestamp = $('<div class="timestamp">');
     let date = new Date(timestamp);
@@ -505,7 +507,11 @@ $(function() {
       .append($user_img)
       .append($timestamp)
       .append($message)
-      .append($thanks_container);
+
+
+    if (!isThread && fromUser != username) {
+      $container.append($thanks_container);
+    }
 
     if (isThread) {
       $container.addClass("question");
@@ -536,11 +542,8 @@ $(function() {
       $container.append($reply_thread);
     }
 
-    if (test_bool) {
-      $thanks_container.attr("booltest", true);
-    } else {
-      $thanks_container.attr("booltest", false);
-    }
+    update_thanks_badge(data.total_thanks, $message)
+
 
     $thanks_container.attr("uniqueid", messageid);
 
@@ -549,3 +552,49 @@ $(function() {
     window.scrollTop = window.scrollHeight;
   }
 });
+
+
+function update_thanks_badge(total, container = null) {
+  container.children('.bottom-right-badge').remove();
+  if (total > 0) {
+    let $svg_thanks = $(svg);
+    let $thanks_display = $(
+      `<div class="bottom-right-badge">`).append($svg_thanks)
+    $thanks_display.append(` ${total}</div>`)
+    container.append($thanks_display)
+  } 
+}
+
+function update_thanks_button(thanked, container = null) {
+  if (thanked) {
+    container.children[0].classList.add('no-show')
+    container.children[0].classList.remove('show')
+    container.children[1].classList.remove('no-show')
+    container.children[1].classList.add('show')
+  } else {
+    container.children[1].classList.add('no-show')
+    container.children[1].classList.remove('show')
+    container.children[0].classList.remove('no-show')
+    container.children[0].classList.add('show')
+  }
+
+}
+
+
+
+var svg = `<svg class="logo-svg" height="17px" viewBox="0 0 42 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <!-- Generator: Sketch 51.3 (57544) - http://www.bohemiancoding.com/sketch -->
+  <title>Peerstachio Logo</title>
+  <desc>Created with Sketch.</desc>
+  <defs></defs>
+  <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+      <g id="Artboard" transform="translate(-13.000000, -17.000000)">
+          <g id="Group-2" transform="translate(15.000000, 18.000000)">
+              <g id="Group" transform="translate(0.000000, 1.000000)" fill-rule="nonzero">
+                  <path d="M6.19687928,0.826843686 L18.401212,16.1118352 L30.5343913,0.764067869 C34.3768335,4.13662151 36.8024241,9.08444122 36.8024241,14.598788 C36.8024241,24.7614968 28.5639208,33 18.401212,33 C8.23850325,33 0,24.7614968 0,14.598788 C0,9.11855696 2.39567051,4.19786478 6.19687928,0.826843686 Z" id="Combined-Shape" stroke="#1EA348" stroke-width="3" fill="#FFFFFF"></path>
+                  <path d="M10,3.76868462 L18.0390589,15.3202889 L26.372973,3.76868462 C24.127248,1.76560679 21.3984192,0.764067869 18.1864865,0.764067869 C14.9745538,0.764067869 12.245725,1.76560679 10,3.76868462 Z" id="Path" fill="#1EA348"></path>
+              </g>
+          </g>
+      </g>
+  </g>
+</svg>`

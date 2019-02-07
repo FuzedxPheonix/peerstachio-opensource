@@ -4,7 +4,7 @@
   display: grid;
   line-height: 1.3;
 }
-.message-container:hover .say-thanks > div {
+.message-container:hover .say-thanks > .show {
   display: flex;
 }
 .message-container .say-thanks {
@@ -47,6 +47,7 @@
   color: var(--warm-grey);
 }
 .message-container .message {
+  position: relative;
   padding: 0.8rem;
   border-radius: 0.3rem;
   background: #eeeeee;
@@ -109,7 +110,7 @@
 }
 #messages .message-container .say-thanks {
   grid-column: 3/4;
-  grid-row: 1/4;
+  grid-row: 1/5;
 }
 #messages .me {
   grid-template-rows: 27px 27px auto;
@@ -132,7 +133,7 @@
 }
 #messages .me .say-thanks {
   grid-column: 1/2;
-  grid-row: 1/4;
+  grid-row: 1/5;
 }
 #messages .message {
   align-self: start;
@@ -219,6 +220,29 @@
 .question .message {
   background: var(--tree-green);
   color: white;
+}
+
+.bottom-right-badge {
+  position: absolute;
+  bottom: -18px;
+  right: -18px;
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  border: solid 1px #e3e3e3;
+  border-radius: 5px;
+  background-color: white;
+  -webkit-user-select: none;
+  /* Safari */
+  -moz-user-select: none;
+  /* Firefox */
+  -ms-user-select: none;
+  /* IE10+/Edge */
+  user-select: none;
+  /* Standard */
+}
+.bottom-right-badge .logo-svg {
+  height: 15px;
 }
 
 /*# sourceMappingURL=message_container.css.map */

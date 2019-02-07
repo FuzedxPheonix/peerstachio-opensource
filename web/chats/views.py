@@ -233,7 +233,7 @@ def update_thanks(request):
             is_thanked = not json_test[0]['fields']['thanked']
 
             update_thank_message = ThankMessageChat.objects.filter(
-                message_id=messageid).update(thanked=is_thanked)
+                message_id=messageid, user=data_user.id).update(thanked=is_thanked)
 
         else:
             is_thanked = True
@@ -247,6 +247,7 @@ def update_thanks(request):
             'json', ThankMessageChat.objects.filter(message_id=messageid, thanked=True))
 
         json_data = json.loads(say_thanks_obj)
+        print(json_data)
 
         out_put = {"total": len(json_data), "id": messageid,
                    "thanked": is_thanked}

@@ -204,13 +204,13 @@
 
         var parent = element.parentNode;
 
-        console.log(parent)
+        // console.log(parent)
 
         var message_id = parent.getAttribute("uniqueid");
 
         var data_bool = parent.getAttribute("booltest");
 
-        console.log(message_id)
+        // console.log(message_id)
 
         $(document).ready(function() {
           $.getJSON('chats/chat_update_thanks', {
@@ -218,7 +218,10 @@
             message_id: message_id,
             bool_test: data_bool
           }, function(data) {
+            var container = $(parent.parentNode.querySelector(".message"))
             console.log(data)
+            update_thanks_badge(data.total, container)
+            update_thanks_button(data.thanked, parent)
           })
         })
 
