@@ -59,6 +59,9 @@
   background: #eeeeee;
   white-space: pre-wrap;
 }
+.message-container .message a {
+  text-decoration: underline;
+}
 .message-container .message-response {
   grid-column: 2/3;
   grid-row: 2/3;

@@ -418,8 +418,11 @@ $(function() {
       '<div class="user-img">' + fromUser[0].toUpperCase() + "</div>"
     );
     let $message = $('<p class="message">').text(message);
+    $message.linkify({
+      target: "_blank"
+    });
     let $thanks_container = $('<div class="say-thanks">');
-    console.log(data.thanked)
+    
     let $say_thanks = $("<div onclick=showPopup(this)>")
       .append($(svg))
       .append("<p>Say thanks to " + fromUser + "</p>");
@@ -427,8 +430,8 @@ $(function() {
     let $you_said_thanks = $("<div style='cursor: auto;'>")
       .append($(svg))
       .append("<p>You said thanks to " + fromUser + "!</p>");
-    
-    console.log(data)
+
+    // console.log(data)
     if (data.test_bool) {
       $thanks_container.attr("booltest", true);
     } else {
@@ -562,7 +565,7 @@ function update_thanks_badge(total, container = null) {
       `<div class="bottom-right-badge">`).append($svg_thanks)
     $thanks_display.append(` ${total}</div>`)
     container.append($thanks_display)
-  } 
+  }
 }
 
 function update_thanks_button(thanked, container = null) {
