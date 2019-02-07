@@ -21,6 +21,10 @@
       align-items: center;
 
       width: fit-content;
+      width: intrinsic;           /* Safari/WebKit uses a non-standard name */
+      width: -moz-max-content;    /* Firefox/Gecko */
+      width: -webkit-max-content; /* Chrome */
+
       height: 30px;
       margin: 0 20px;
       margin-top: 15px;
@@ -111,7 +115,7 @@
     color: var(--warm-grey);
   }
   .message-container {
-    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
     grid-template-columns: 54px 1fr 250px;
     grid-template-rows: 27px 27px auto;
     grid-column-gap: 17px;
