@@ -109,7 +109,7 @@
 }
 #messages .message-container .say-thanks {
   grid-column: 3/4;
-  grid-row: 1/2;
+  grid-row: 1/4;
 }
 #messages .me {
   grid-template-rows: 27px 27px auto;
@@ -132,7 +132,7 @@
 }
 #messages .me .say-thanks {
   grid-column: 1/2;
-  grid-row: 1/2;
+  grid-row: 1/4;
 }
 #messages .message {
   align-self: start;

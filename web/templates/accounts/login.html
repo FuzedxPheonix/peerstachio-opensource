@@ -9,7 +9,6 @@
         {% endfor %}
     </ul>
     {% endif %}
-    <br>
     <form method="POST">
         {% csrf_token %} {{ form }}
         <input class="btn btn-yellow" type="submit" value="LOG IN">

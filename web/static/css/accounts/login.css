@@ -5,12 +5,18 @@
   flex-direction: column;
   width: 100%;
 }
+.login h1 {
+  margin-bottom: 40px;
+}
 .login form {
   width: 18rem;
 }
 .login form label {
   font-family: var(--brandon-bold);
   font-size: 0.9rem;
+}
+.login form label:nth-child(3) {
+  padding-top: 30px;
 }
 .login form input {
   width: 100%;

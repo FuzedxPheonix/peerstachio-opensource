@@ -5,12 +5,19 @@
   flex-direction: column;
   width: 100%;
 
+  h1 {
+    margin-bottom: 40px;
+  }
+
   form {
     width: 18rem;
-
+    
     label {
       font-family: var(--brandon-bold);
       font-size: 0.9rem;
+      &:nth-child(3) {
+        padding-top: 30px;
+      }
     }
 
     input {

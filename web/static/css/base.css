@@ -129,6 +129,9 @@ h3 {
   background: white;
 }
 
+.errorlist {
+  margin-bottom: 20px;
+}
 .errorlist li {
   margin-top: 10px;
   color: #ee0022;
