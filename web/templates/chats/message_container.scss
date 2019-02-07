@@ -219,7 +219,7 @@
     }
   }
   .me {
-    grid-template-columns: auto 50px;
+    grid-template-columns: auto 54px;
     grid-template-rows: 25px 25px auto;
     .user-img {
       grid-column: 2/3;
@@ -243,12 +243,16 @@
     margin-top: 11px;
     grid-column: 1/3;
     grid-row: 3/4;
+    max-width: 300px;
   }
 
   .say-thanks {
+    & > div{
+      margin: 0; 
+    }
     position: absolute;
-    bottom: -12px;
-    right: -31px;
+    bottom: -15px;
+    right: 30px;
   }
 }
 

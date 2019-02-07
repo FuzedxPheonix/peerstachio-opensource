@@ -46,7 +46,7 @@
           'X-CSRFToken': csrftoken
         },
       }).done(function (data) {
-          console.log(data)
+          // console.log(data)
           if (data.success == true) {
             $('#pistachios').text(data.rating);
           } else {

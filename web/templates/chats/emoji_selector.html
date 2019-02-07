@@ -45,18 +45,14 @@
     },
     methods: {
       append(emoji) {
-        console.log(this)
-        console.log(this.input)
         this.input += emoji
       },
       clear: function(e) {
-        console.log('clear')
         // console.log(e);
         MessageTextOnKeyEnter(e)
         if (!e.ctrlKey) {
           this.input = ''
         }
-        console.log("from Vue")
       }
     },
     directives: {
