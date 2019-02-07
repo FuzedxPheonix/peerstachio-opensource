@@ -13,5 +13,5 @@ WORKDIR /home/django/app
 ADD requirements.txt /home/django/app/requirements.txt
 RUN pip install --user -r requirements.txt
 
-ADD --chown=django:django . /home/django/app
+COPY --chown=django:django . /home/django/app
 RUN DATABASE_URL=none DB_NAME=none DB_USER=none DB_PASS=none DB_SERVICE=none DB_PORT=none SECRET_KEY=none /usr/local/bin/python /home/django/app/manage.py collectstatic --noinput
