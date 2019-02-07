@@ -4,8 +4,9 @@ server {
     server_name example.org;
     charset utf-8;
 
-    location /static {
-        alias /var/www/static;
+    location /static/ {
+        alias /home/django/app/peerstachio/;
+	autoindex on;
     }
 
     location / {
