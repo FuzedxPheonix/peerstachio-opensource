@@ -14,7 +14,7 @@ services:
       - "8000:8000"
     volumes:
       - /home/django/app
-      - static:/home/django/app/static
+      - static:/home/django/app/peerstachio/static
     env_file: .env
     environment:
       DEBUG: 'true'
