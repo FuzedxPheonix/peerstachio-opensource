@@ -512,7 +512,7 @@ $(function() {
       .append($message)
 
 
-    if (!isThread && fromUser != username) {
+    if (!isThread && fromUser != username && !isThreadHeader) {
       $container.append($thanks_container);
     }
 
