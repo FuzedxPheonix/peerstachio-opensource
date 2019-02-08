@@ -234,9 +234,10 @@ body {
 .thread-scroll {
   padding: 1rem 0rem 0 1rem;
   width: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  position: relative;
   overflow-y: scroll;
+  overflow-scrolling: touch;
 }
 #messages::-webkit-scrollbar,
 .thread-scroll::-webkit-scrollbar {
