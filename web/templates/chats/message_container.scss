@@ -6,8 +6,8 @@
 
   line-height: 1.3;
 
-  &:hover .say-thanks > .show {
-    display: flex;
+  .say-thanks > .no-show {
+    display: none;
   }
   .say-thanks {
     display: grid;
@@ -139,7 +139,8 @@
     }
     .say-thanks {
       grid-column: 3/4;
-      grid-row: 2/-1;
+      grid-row: 2/4;
+      // grid-row: 2/-1;
     }
   }
   .me {

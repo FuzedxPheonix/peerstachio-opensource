@@ -273,9 +273,7 @@ body {
   width: 100%;
   display: grid;
   // flex-direction: column;
-  position: relative;
   overflow-y: scroll;
-  overflow-scrolling: touch;
 
   &::-webkit-scrollbar {
     background: none;

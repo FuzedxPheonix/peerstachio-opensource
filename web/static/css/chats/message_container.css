@@ -4,8 +4,8 @@
   display: grid;
   line-height: 1.3;
 }
-.message-container:hover .say-thanks > .show {
-  display: flex;
+.message-container .say-thanks > .no-show {
+  display: none;
 }
 .message-container .say-thanks {
   display: grid;
@@ -119,7 +119,7 @@
 }
 #messages .message-container .say-thanks {
   grid-column: 3/4;
-  grid-row: 2/-1;
+  grid-row: 2/4;
 }
 #messages .me {
   grid-template-rows: 29px 29px auto auto;
