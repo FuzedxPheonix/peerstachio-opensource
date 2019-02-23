@@ -70,6 +70,7 @@
   .qs-details {
     display: flex;
     margin-top: 5px;
+    font-size: 14px;
 
     .message-response {
       justify-self: end;
@@ -83,7 +84,6 @@
         margin-left: 0.3rem;
         color: #1e3a4e;
         text-decoration: underline;
-        font-size: 14px;
       }
     }
   }
@@ -133,11 +133,11 @@
     }
 
     .user-name {
-      margin-left: 75px;
+      margin-left: 69px;
     }
 
     .message {
-      margin-left: 75px;
+      margin-left: 69px;
       max-width: 55%;
       position: relative;
       float: left;
@@ -156,7 +156,7 @@
     .say-thanks {
       position: absolute;
       display: flex;
-      top: 50%;
+      top: 45%;
     }
   }
 
@@ -170,12 +170,12 @@
     }
 
     .user-name {
-      margin-right: 75px;
+      margin-right: 69px;
       text-align: right;
     }
 
     .message {
-      margin-right: 75px;
+      margin-right: 69px;
       float: right;
     }
 

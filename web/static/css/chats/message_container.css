@@ -56,6 +56,7 @@
 .message-container .qs-details {
   display: flex;
   margin-top: 5px;
+  font-size: 14px;
 }
 .message-container .qs-details .message-response {
   justify-self: end;
@@ -69,7 +70,6 @@
   margin-left: 0.3rem;
   color: #1e3a4e;
   text-decoration: underline;
-  font-size: 14px;
 }
 
 .message-container:after {
@@ -108,10 +108,10 @@
   color: var(--warm-grey);
 }
 #messages .message-container .user-name {
-  margin-left: 75px;
+  margin-left: 69px;
 }
 #messages .message-container .message {
-  margin-left: 75px;
+  margin-left: 69px;
   max-width: 55%;
   position: relative;
   float: left;
@@ -126,7 +126,7 @@
 #messages .message-container .say-thanks {
   position: absolute;
   display: flex;
-  top: 50%;
+  top: 45%;
 }
 #messages .me .user-img {
   right: 0px;
@@ -135,11 +135,11 @@
   right: 0px;
 }
 #messages .me .user-name {
-  margin-right: 75px;
+  margin-right: 69px;
   text-align: right;
 }
 #messages .me .message {
-  margin-right: 75px;
+  margin-right: 69px;
   float: right;
 }
 #messages .me .message-text {
