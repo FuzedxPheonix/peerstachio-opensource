@@ -22,6 +22,24 @@ from django.http import JsonResponse
 
 from django.contrib.auth.models import User
 
+from django.db import connection
+
+
+def my_custom_sql():
+    with connection.cursor() as cursor:
+        cursor.execute('select * from chats_userroomonline INNER JOIN accounts_profile on accounts_profile.id = chats_userroomonline.user_id where chats_userroomonline.is_online = true;')
+        rows = cursor.fetchall()
+
+        result = []
+        keys = ('id', 'is_online', 'chat_room_id', 'user_id', 'ID', 'rating', 'grad_year', 'avatar', 'said_thanks', 'user_id', )
+
+        for row in rows:
+            result.append(dict(zip(keys, row)))
+
+            json_data = json.dumps(result)
+
+    return json_data
+
 
 def all_rooms(request):
     """
@@ -101,9 +119,12 @@ def chat_message_json(request):
 def chat_online_users(request):
     chat_slug = request.GET.get('slug')
     room = ChatRoom.objects.get(room_name_slug=chat_slug)
-    response = serializers.serialize('json', UserRoomOnline.objects.filter(
-        chat_room=room.id, is_online=True),  use_natural_foreign_keys=True)
-    return HttpResponse(response, content_type='application/json')
+    # response = serializers.serialize('json', UserRoomOnline.objects.filter(
+    #     chat_room=room.id, is_online=True),  use_natural_foreign_keys=True)
+
+    sql_query = my_custom_sql();
+
+    return HttpResponse(sql_query, content_type='application/json')
 
 
 def all_answers(request):

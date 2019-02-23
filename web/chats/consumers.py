@@ -8,6 +8,24 @@ import json
 from .models import ChatRoom, ChatMessage, ChatThread, ChatThreadMessage, UserRoomOnline, User
 from django.core import serializers
 
+from django.db import connection
+
+
+def my_custom_sql():
+    with connection.cursor() as cursor:
+        cursor.execute('select * from chats_userroomonline INNER JOIN accounts_profile on accounts_profile.id = chats_userroomonline.user_id where chats_userroomonline.is_online = true;')
+        rows = cursor.fetchall()
+
+        result = []
+        keys = ('id', 'is_online', 'chat_room_id', 'user_id', 'ID', 'rating', 'grad_year', 'avatar', 'said_thanks', 'user_id', )
+
+        for row in rows:
+            result.append(dict(zip(keys, row)))
+
+            json_data = json.dumps(result)
+
+    return json_data
+
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
@@ -125,7 +143,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
             else:
                 # Send message to WebSocket
                 chat_room_query = ChatRoom.objects.get(room_name_slug=self.room_name)
-                get_all_online_users = serializers.serialize('json', UserRoomOnline.objects.filter(chat_room=chat_room_query, is_online=True), use_natural_foreign_keys=True)
+                # get_all_online_users = serializers.serialize('json', UserRoomOnline.objects.filter(chat_room=chat_room_query, is_online=True), use_natural_foreign_keys=True)
+                get_all_online_users = my_custom_sql()
+
                 await self.send(text_data=json.dumps({
                     'message_obj': message, 'thread_obj': False, 'is_thread': False, 'all_online_users': get_all_online_users
                 }))
