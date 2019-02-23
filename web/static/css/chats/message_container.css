@@ -1,26 +1,18 @@
 /* message design */
 .message-container {
-  justify-self: start;
-  display: grid;
   line-height: 1.3;
 }
 .message-container .say-thanks > .no-show {
   display: none;
 }
 .message-container .say-thanks {
-  display: grid;
-  align-items: center;
+  float: left;
 }
 .message-container .say-thanks > div {
   display: none;
+  position: relative;
+  top: 45%;
   align-items: center;
-  width: fit-content;
-  width: intrinsic;
-  /* Safari/WebKit uses a non-standard name */
-  width: -moz-max-content;
-  /* Firefox/Gecko */
-  width: -webkit-max-content;
-  /* Chrome */
   margin: 0 20px;
   padding: 5px;
   font-size: 14px;
@@ -49,125 +41,123 @@
 .message-container .user-name {
   font-size: 0.7rem;
   color: var(--warm-grey);
+  margin-bottom: 5px;
 }
-.message-container .message {
+.message-container .message-text {
   position: relative;
   padding: 0.8rem;
   border-radius: 0.3rem;
   background: #eeeeee;
   white-space: pre-wrap;
 }
-.message-container .message a {
+.message-container .message-text a {
   text-decoration: underline;
 }
-.message-container .message-response {
-  grid-column: 2/3;
-  grid-row: 2/3;
+.message-container .qs-details {
+  display: flex;
+  margin-top: 5px;
+}
+.message-container .qs-details .message-response {
   justify-self: end;
   display: flex;
   align-items: center;
   font-size: 0.6rem;
-  padding-top: 0.3rem;
+  margin-left: 10px;
   cursor: pointer;
 }
-.message-container .message-response p {
+.message-container .qs-details .message-response p {
   margin-left: 0.3rem;
   color: #1e3a4e;
   text-decoration: underline;
   font-size: 14px;
 }
 
-/* message design when sent by user */
-.me {
-  justify-self: end;
+.message-container:after {
+  clear: both;
+  content: ".";
+  display: block;
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
 }
+
+/* message design when sent by user */
 .me .say-thanks {
   justify-items: right;
 }
-.me .message {
+.me .message-text {
   color: #116f2f;
   background-color: #f2fcf2;
 }
 
-#messages .timestamp {
-  display: grid;
-  align-items: center;
-  justify-items: center;
+#messages .message-container {
+  margin: 20px 0px;
+  position: relative;
+}
+#messages .message-container .user-img {
+  position: absolute;
+  top: 5px;
+}
+#messages .message-container .timestamp {
+  position: absolute;
+  top: 70px;
+  width: 54px;
+  text-align: center;
   font-size: 13px;
   color: var(--warm-grey);
 }
-#messages .message-container {
-  padding-bottom: 1.5rem;
-  grid-template-columns: 54px max-content 250px;
-  grid-template-rows: 29px 29px auto auto;
-  grid-column-gap: 17px;
-  max-width: 45rem;
-}
-#messages .message-container .user-img {
-  grid-column: 1/2;
-  grid-row: 1/3;
-}
-#messages .message-container .timestamp {
-  grid-column: 1/2;
-  grid-row: 3/4;
-  align-self: start;
-  text-align: center;
-}
 #messages .message-container .user-name {
-  grid-column: 2/3;
-  grid-row: 1/2;
+  margin-left: 75px;
+}
+#messages .message-container .message {
+  margin-left: 75px;
+  max-width: 55%;
+  position: relative;
+  float: left;
+}
+#messages .message-container .message-text {
+  clear: left;
+  word-wrap: break-word;
+}
+#messages .message-container .thanks-wrapper {
+  float: left;
 }
 #messages .message-container .say-thanks {
-  grid-column: 3/4;
-  grid-row: 2/4;
-}
-#messages .me {
-  grid-template-rows: 29px 29px auto auto;
-  grid-template-columns: 250px max-content 54px;
-  grid-column-gap: 17px;
-  max-width: 45rem;
+  position: absolute;
+  display: flex;
+  top: 50%;
 }
 #messages .me .user-img {
-  grid-column: 3/4;
-  grid-row: 1/3;
+  right: 0px;
 }
 #messages .me .timestamp {
-  grid-column: 3/4;
-  grid-row: 3/4;
+  right: 0px;
 }
 #messages .me .user-name {
-  justify-self: end;
-  grid-column: 2/3;
-  grid-row: 1/2;
+  margin-right: 75px;
+  text-align: right;
 }
-#messages .me .say-thanks {
-  grid-column: 1/2;
-  grid-row: 1/5;
+#messages .me .message {
+  margin-right: 75px;
+  float: right;
 }
-#messages .message {
-  align-self: start;
-  grid-column: 2/3;
-  grid-row: 2/4;
+#messages .me .message-text {
+  clear: right;
 }
-#messages .qs-details {
-  grid-column: 2/3;
-  grid-row: 4/5;
-  font-size: 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-#messages .qs-details > p {
-  margin-right: 20px;
+#messages .me .thanks-wrapper {
+  float: right;
 }
 
 #thread-messages .timestamp,
 #thread-messages .user-name {
   font-size: 14px;
+  color: #bbbaba;
+}
+#thread-messages .user-name {
   color: var(--warm-grey);
 }
-#thread-messages .message-container.thread-header .message {
+#thread-messages .message-container.thread-header .message-text {
   background: none;
   padding-left: 0;
   padding-right: 0;
@@ -175,6 +165,7 @@
 #thread-messages .message-container {
   position: relative;
   margin-bottom: 1rem;
+  display: grid;
   grid-template-columns: 50px auto;
   grid-template-rows: 25px 25px auto;
 }
@@ -230,7 +221,7 @@
   margin: 0;
 }
 
-.question .message {
+.question .message-text {
   background: var(--tree-green);
   color: white;
 }

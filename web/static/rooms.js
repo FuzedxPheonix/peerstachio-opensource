@@ -18,6 +18,7 @@ $(function() {
     $onlineWindow.empty();
 
     parse_data.forEach(function(element) {
+      console.log(element);
       let $peercontainer = $('<div class="peer">');
 
       let $peername = $(
@@ -91,7 +92,7 @@ $(function() {
       $onlineWindow.empty();
       data.forEach(function(element) {
         let $peercontainer = $('<div class="peer">');
-
+        console.log(element);
         let $peername = $(
           '<div class="peer-name">' + element.fields.user[0] + "</div>"
         );
@@ -403,15 +404,21 @@ $(function() {
     data
   ) {
     // This formats how the message is printed when the json is loaded first
-    let $user_name = $('<p class="user-name">' + fromUser[0] + "</p>"); // This value is important for value
+    let $user_name = $('<p class="user-name">' + fromUser + "</p>"); // This value is important for value
     // $user.prepend('<img class="user-img" src="/static/images/specialist (1).png" />');
     let $user_img = $(
       '<div class="user-img">' + fromUser[0].toUpperCase() + "</div>"
     );
-    let $message = $('<p class="message">').text(message);
-    $message.linkify({
+
+
+    let $messageText = $('<p class="message-text">').text(message);
+    $messageText.linkify({
       target: "_blank"
     });
+
+    let $message = $('<div class="message">');
+    $message.append($messageText);
+
     let $thanks_container = $('<div class="say-thanks">');
 
     let $say_thanks = $("<div onclick=showPopup(this)>")
@@ -423,11 +430,11 @@ $(function() {
       .append("<p>You said thanks to " + fromUser + "!</p>");
 
     // console.log(data)
-    if (data.test_bool) {
-      $thanks_container.attr("booltest", true);
-    } else {
-      $thanks_container.attr("booltest", false);
-    }
+    // if (data.test_bool) {
+    //   $thanks_container.attr("booltest", true);
+    // } else {
+    //   $thanks_container.attr("booltest", false);
+    // }
 
     if (data.thanked) {
       $say_thanks.addClass('no-show')
@@ -438,6 +445,9 @@ $(function() {
     }
     $thanks_container.append($say_thanks);
     $thanks_container.append($you_said_thanks);
+
+    let $thanks_wrapper = $('<div class="thanks-wrapper">');
+    $thanks_wrapper.append($thanks_container);
 
     let $timestamp = $('<div class="timestamp">');
     let date = new Date(timestamp);
@@ -487,26 +497,27 @@ $(function() {
 
       return hours + ":" + minutes + (antepost > 12 ? " PM" : " AM");
     }
+
     let $container = $('<div class="message-container">');
     $container.hover(toggleSayThanksButton, toggleSayThanksButton);
 
     if (isThreadHeader) {
       $container.addClass("thread-header");
     }
+
     if (fromUser === username && !isThreadHeader) {
       $container.addClass("me");
     }
 
-    // .append($user_name)
-
     $container
       .append($user_img)
       .append($timestamp)
+      .append($user_name)
       .append($message)
 
 
     if (!isThread && fromUser != username && !isThreadHeader) {
-      $container.append($thanks_container);
+      $container.append($thanks_wrapper);
     }
 
     if (isThread) {
@@ -535,10 +546,11 @@ $(function() {
         },
         get_thread_json
       );
-      $container.append($reply_thread);
+      $message.append($reply_thread);
     }
-
-    update_thanks_badge(data.total_thanks, $message)
+    console.log("[DEBUG] total thanks: ", data.total_thanks);
+    console.log("[DEBUG] data: ", data);
+    update_thanks_badge(data.total_thanks, $messageText)
 
 
     $thanks_container.attr("uniqueid", messageid);
@@ -553,7 +565,6 @@ $(function() {
 function update_thanks_badge(total, container = null) {
   let chatWindowPosition = document.querySelector("#messages").scrollTop;
   let threadWindowPosition = document.querySelector(".thread-wrapper").scrollTop;
-
   container.children('.bottom-right-badge').remove();
   if (total > 0) {
     let $svg_thanks = $(svg);
@@ -597,7 +608,7 @@ function toggleSayThanksButton(e) {
   let threadWindowPosition = document.querySelector(".thread-wrapper").scrollTop;
   if (this.querySelector(".show")) {
     if (e.type == "mouseenter") {
-      setTimeout(this.querySelector(".show").style.display = "flex", 0);
+      this.querySelector(".show").style.display = "flex";
     } else {
       this.querySelector(".show").style.display = "";
     }

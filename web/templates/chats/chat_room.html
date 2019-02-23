@@ -160,9 +160,6 @@
       }
     }
 
-
-
-
     function showQs() {
       var menuClasses = document.querySelector(".unanswered-qs-dropdown").classList;
 
@@ -201,16 +198,9 @@
       }
 
       function showPopup(element) {
-
         var parent = element.parentNode;
-
-        // console.log(parent)
-
         var message_id = parent.getAttribute("uniqueid");
-
         var data_bool = parent.getAttribute("booltest");
-
-        // console.log(message_id)
 
         $(document).ready(function() {
           $.getJSON('chats/chat_update_thanks', {
@@ -250,4 +240,5 @@
 <script src="{% static 'rooms.js'  %}"></script>
 <script src="{% static 'linkify.min.js'  %}"></script>
 <script src="{% static 'linkify-jquery.min.js'  %}"></script>
+
 {% endblock %}
