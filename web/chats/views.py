@@ -27,11 +27,11 @@ from django.db import connection
 
 def my_custom_sql():
     with connection.cursor() as cursor:
-        cursor.execute('select * from chats_userroomonline INNER JOIN accounts_profile on accounts_profile.id = chats_userroomonline.user_id where chats_userroomonline.is_online = true;')
+        cursor.execute('select * from chats_userroomonline INNER JOIN accounts_profile on accounts_profile.id = chats_userroomonline.user_id INNER JOIN (SELECT id, username from auth_user ) a on a.id =  chats_userroomonline.user_id where chats_userroomonline.is_online = true;')
         rows = cursor.fetchall()
 
         result = []
-        keys = ('id', 'is_online', 'chat_room_id', 'user_id', 'ID', 'rating', 'grad_year', 'avatar', 'said_thanks', 'user_id', )
+        keys = ('id', 'is_online', 'chat_room_id', 'user_id', 'ID', 'rating', 'grad_year', 'avatar', 'said_thanks', 'user_id', 'auth_id', 'username',)
 
         for row in rows:
             result.append(dict(zip(keys, row)))
