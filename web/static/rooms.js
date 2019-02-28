@@ -18,14 +18,13 @@ $(function() {
     $onlineWindow.empty();
 
     parse_data.forEach(function(element) {
-      console.log(element);
       let $peercontainer = $('<div class="peer">');
 
       let $peername = $(
-        '<div class="peer-name">' + element.fields.user[0] + "</div>"
+        '<div class="peer-name">' + element.username + "</div>"
       );
 
-      let $peeruni = $('<div class="peer-uni">' + "Class of 2021" + "</div>");
+      let $peeruni = $('<div class="peer-uni">' + element.grad_year === 0 ? "" : `Class of ${element.grad_year}` + +"</div>");
 
       let $peerpic = $(
         '<img class="peer-pic" src="/static/images/specialist (1).png">'
@@ -92,12 +91,11 @@ $(function() {
       $onlineWindow.empty();
       data.forEach(function(element) {
         let $peercontainer = $('<div class="peer">');
-        console.log(element);
         let $peername = $(
-          '<div class="peer-name">' + element.fields.user[0] + "</div>"
+          '<div class="peer-name">' + element.username + "</div>"
         );
 
-        let $peeruni = $('<div class="peer-uni">' + "Class of 2021" + "</div>");
+        let $peeruni = $('<div class="peer-uni">' + element.grad_year === 0 ? "" : `Class of ${element.grad_year}` + +"</div>");
 
         let $peerpic = $(
           '<img class="peer-pic" src="/static/images/specialist (1).png">'
@@ -548,8 +546,8 @@ $(function() {
       );
       $message.append($reply_thread);
     }
-    console.log("[DEBUG] total thanks: ", data.total_thanks);
-    console.log("[DEBUG] data: ", data);
+    // console.log("[DEBUG] total thanks: ", data.total_thanks);
+    // console.log("[DEBUG] data: ", data);
     update_thanks_badge(data.total_thanks, $messageText)
 
 
@@ -563,6 +561,8 @@ $(function() {
 
 
 function update_thanks_badge(total, container = null) {
+  console.log(total);
+  console.log(container);
   let chatWindowPosition = document.querySelector("#messages").scrollTop;
   let threadWindowPosition = document.querySelector(".thread-wrapper").scrollTop;
   container.children('.bottom-right-badge').remove();

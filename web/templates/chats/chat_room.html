@@ -208,8 +208,7 @@
             message_id: message_id,
             bool_test: data_bool
           }, function(data) {
-            var container = $(parent.parentNode.querySelector(".message"))
-            // console.log(data)
+            var container = $(parent.parentNode.parentNode.querySelector(".message-text"))
             update_thanks_badge(data.total, container)
             update_thanks_button(data.thanked, parent)
           })
