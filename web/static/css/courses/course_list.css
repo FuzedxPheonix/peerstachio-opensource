@@ -55,7 +55,6 @@
 #courses .course p {
   color: black;
   font-family: var(--brandon-bold);
-  font-weight: 900;
   font-size: 1.2rem;
 }
 #courses .course .course-name {

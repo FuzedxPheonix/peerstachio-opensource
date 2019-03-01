@@ -41,7 +41,7 @@
 .message-container .user-name {
   font-size: 0.7rem;
   color: var(--warm-grey);
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 .message-container .message-text {
   position: relative;
@@ -102,6 +102,7 @@
 #messages .message-container .timestamp {
   position: absolute;
   top: 70px;
+  left: 2px;
   width: 54px;
   text-align: center;
   font-size: 13px;
@@ -132,7 +133,8 @@
   right: 0px;
 }
 #messages .me .timestamp {
-  right: 0px;
+  left: auto;
+  right: -2px;
 }
 #messages .me .user-name {
   margin-right: 69px;

@@ -52,7 +52,7 @@
   .user-name {
     font-size: 0.7rem;
     color: var(--warm-grey);
-    margin-bottom: 5px;
+    margin-bottom: 3px;
   }
 
   .message-text {
@@ -126,6 +126,7 @@
     .timestamp {
       position: absolute;
       top: 70px;
+      left: 2px;
       width: 54px;
       text-align: center;
       font-size: 13px;
@@ -166,7 +167,8 @@
     }
 
     .timestamp {
-      right: 0px;
+      left: auto;
+      right: -2px;
     }
 
     .user-name {

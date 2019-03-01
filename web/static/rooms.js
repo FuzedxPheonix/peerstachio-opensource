@@ -13,30 +13,30 @@ $(function() {
   let onlineWindow = document.querySelector(".peers");
   let unansweredQuestions = document.querySelector(".unanswered-qs-dropdown");
 
+  function insert_is_online(element) {
+    let $peercontainer = $('<div class="peer">');
+
+    let $peername = $(`<div class="peer-name">${element.username}</div>`);
+
+    let $peeruni = $(`<div class="peer-uni"> ${element.grad_year === 0 ? "" :
+      `Class of ${element.grad_year}`} </div>`);
+
+    let $peerpic = $(
+      '<img class="peer-pic" src="/static/images/specialist (1).png">'
+    );
+
+    // Contains all the universty student information
+    $peercontainer.append($peerpic);
+    $peercontainer.append($peername);
+    $peercontainer.append($peeruni);
+
+    $onlineWindow.append($peercontainer);
+  }
   function update_is_online(data) {
     var parse_data = JSON.parse(data);
     $onlineWindow.empty();
 
-    parse_data.forEach(function(element) {
-      let $peercontainer = $('<div class="peer">');
-
-      let $peername = $(
-        '<div class="peer-name">' + element.username + "</div>"
-      );
-
-      let $peeruni = $('<div class="peer-uni">' + element.grad_year === 0 ? "" : `Class of ${element.grad_year}` + +"</div>");
-
-      let $peerpic = $(
-        '<img class="peer-pic" src="/static/images/specialist (1).png">'
-      );
-
-      // Contains all the universty student information
-      $peercontainer.append($peerpic);
-      $peercontainer.append($peername);
-      $peercontainer.append($peeruni);
-
-      $onlineWindow.append($peercontainer);
-    });
+    parse_data.forEach(insert_is_online);
   }
 
   function update_like(message_id) {
@@ -89,25 +89,7 @@ $(function() {
     },
     function(data) {
       $onlineWindow.empty();
-      data.forEach(function(element) {
-        let $peercontainer = $('<div class="peer">');
-        let $peername = $(
-          '<div class="peer-name">' + element.username + "</div>"
-        );
-
-        let $peeruni = $('<div class="peer-uni">' + element.grad_year === 0 ? "" : `Class of ${element.grad_year}` + +"</div>");
-
-        let $peerpic = $(
-          '<img class="peer-pic" src="/static/images/specialist (1).png">'
-        );
-
-        // Contains all the universty student information
-        $peercontainer.append($peerpic);
-        $peercontainer.append($peername);
-        $peercontainer.append($peeruni);
-
-        $onlineWindow.append($peercontainer);
-      });
+      data.forEach(insert_is_online);
     }
   );
 
@@ -561,8 +543,6 @@ $(function() {
 
 
 function update_thanks_badge(total, container = null) {
-  console.log(total);
-  console.log(container);
   let chatWindowPosition = document.querySelector("#messages").scrollTop;
   let threadWindowPosition = document.querySelector(".thread-wrapper").scrollTop;
   container.children('.bottom-right-badge').remove();
