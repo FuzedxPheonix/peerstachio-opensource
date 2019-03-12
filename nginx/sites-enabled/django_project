@@ -1,5 +1,4 @@
 server {
-
     listen 80;
     server_name peerstachio.com www.peerstachio.com;
     charset utf-8;
@@ -37,5 +36,15 @@ server {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Host $server_name;
     }
+
+}
+
+
+server {
+
+    listen 443 ssl;
+
+    ssl_certificate     /root/certs/peerstachio.com/peerstachio.com.crt;
+    ssl_certificate_key /root/certs/peerstachio.com/peerstachio.com.key;
 
 }
