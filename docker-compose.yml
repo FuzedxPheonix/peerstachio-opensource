@@ -1,58 +1,67 @@
 version: "3"
 
 services:
-  web:
-    restart: always
-    build:
-      context: ./web
-      args:
-        unbuffered: 1
-        uncached: 1
-    expose:
-      - "8000"
-    ports:
-      - "8000:8000"
-    volumes:
-      - /home/django/app
-      - static:/home/django/app/peerstachio/static
-    env_file: .env
-    environment:
-      DEBUG: 'true'
-      REDIS_URL: redis
-    # command: /home/django/.local/bin/gunicorn peerstachio.wsgi:application -w 2 -b :8000
-    command: daphne -b 0.0.0.0 -p 8000 peerstachio.asgi:application
-    # command: /home/django/.local/bin/gunicorn peerstachio.wsgi:application -w 2 -b 0.0.0.0:8000 --capture-output --log-level debug
-    depends_on:
-      - postgres
-      - redis
+    web:
+        restart: always
+        build:
+            context: ./web
+            args:
+                unbuffered: 1
+                uncached: 1
+        expose:
+            - "8000"
+        ports:
+            - "8000:8000"
+        volumes:
+            - /home/django/app
+            - static:/home/django/app/peerstachio/static
+        env_file: .env
+        environment:
+            DEBUG: 'true'
+            REDIS_URL: redis
+        # command: /home/django/.local/bin/gunicorn peerstachio.wsgi:application -w 2 -b :8000
+        command: daphne -b 0.0.0.0 -p 8000 peerstachio.asgi:application
+        # command: /home/django/.local/bin/gunicorn peerstachio.wsgi:application -w 2 -b 0.0.0.0:8000 --capture-output --log-level debug
+        depends_on:
+            - postgres
+            - redis
 
-  nginx:
-    restart: always
-    build: ./nginx/
-    ports:
-      - "80:80"
-    volumes:
-      - static:/var/www/static:ro
-    depends_on:
-      - web
+    nginx:
+        restart: always
+        build: ./nginx/
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./production.conf:/etc/nginx/conf.d/default.conf
+            - ./production-site:/usr/share/nginx/html
+            - ./dh-param/dhparam-2048.pem:/etc/ssl/certs/dhparam-2048.pem
+            - /docker-volumes/etc/letsencrypt/live/peerstachio.com/fullchain.pem:/etc/letsencrypt/live/peerstachio.com/fullchain.pem
+            - /docker-volumes/etc/letsencrypt/live/peerstachio.com/privkey.pem:/etc/letsencrypt/live/peerstachio.com/privkey.pem
+        networks:
+            - docker-network
 
-  postgres:
-    restart: always
-    image: postgres:latest
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data/
+    postgres:
+        restart: always
+        image: postgres:latest
+        ports:
+            - "5432:5432"
+        volumes:
+            - pgdata:/var/lib/postgresql/data/
 
-  redis:
-    restart: always
-    image: redis:latest
-    ports:
-      - "6379:6379"
-    volumes:
-      - redisdata:/data
+    redis:
+        restart: always
+        image: redis:latest
+        ports:
+            - "6379:6379"
+        volumes:
+            - redisdata:/data
+
+networks:
+    docker-network:
+        driver: bridge
 
 volumes:
-  pgdata:
-  redisdata:
-  static:
+    pgdata:
+    redisdata:
+    static:
