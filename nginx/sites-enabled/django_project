@@ -42,7 +42,7 @@ server {
 
 server {
     listen 443 ssl;
-    ssl_certificate     /etc/letsencrypt/live/peerstachio.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/peerstachio.com/cert.pem;
+    ssl_certificate     /var/tmp/certs/fullchain.pem;
+    ssl_certificate_key /var/tmp/certs/cert.pem;
 
 }
