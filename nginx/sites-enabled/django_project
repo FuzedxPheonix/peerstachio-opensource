@@ -44,7 +44,7 @@ server {
 
     listen 443 ssl;
 
-    ssl_certificate     /root/certs/peerstachio.com/peerstachio.com.crt;
-    ssl_certificate_key /root/certs/peerstachio.com/peerstachio.com.key;
+    ssl_certificate     /etc/letsencrypt/live/peerstachio.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/peerstachio.com/privkey.pem;
 
 }
