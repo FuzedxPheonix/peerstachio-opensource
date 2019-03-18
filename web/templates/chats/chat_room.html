@@ -230,9 +230,10 @@
   var ws_chat = window.location.protocol == "https:" ? "/wss/chats" : "/ws/chats/";
 
 
-  var chatSocket = new WebSocket(
-    ws_scheme + window.location.host +
-    ws_chat + room_name_slug + '/');
+    var chatSocket = new WebSocket(
+    'ws://' + window.location.host +
+    '/ws/chats/' + room_name_slug + '/');
+
 
 
   chatSocket.onclose = function(e) {
