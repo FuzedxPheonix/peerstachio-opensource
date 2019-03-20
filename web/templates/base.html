@@ -37,6 +37,20 @@
   <meta name="msapplication-wide310x150logo" content="{% static 'images/favicon/mstile-310x150.png' %}" />
   <meta name="msapplication-square310x310logo" content="{% static 'images/favicon/mstile-310x310.png' %}" />
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-136337998-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-136337998-1');
+  </script>
+
+
   <!-- CSS Icons -->
   <link rel="stylesheet" href="{% static 'css/reset.css'%}" />
   <link rel="stylesheet" href="{% static 'css/fonts.css'%}" />
@@ -72,7 +86,7 @@
   <script>
     document
       .querySelector('.container')
-      .addEventListener('click', function () {
+      .addEventListener('click', function() {
         dropdown.style.display = 'none'
       })
   </script>

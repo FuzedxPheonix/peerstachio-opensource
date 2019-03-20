@@ -225,9 +225,15 @@
   var room_name_slug = "{{room.room_name_slug}}";
   var current_thread_id = -1;
 
-  var chatSocket = new WebSocket(
+  var ws_scheme = window.location.protocol == "https:" ? "wss://" : "ws://";
+
+  var ws_chat = window.location.protocol == "https:" ? "/wss/chats" : "/ws/chats/";
+
+
+    var chatSocket = new WebSocket(
     'ws://' + window.location.host +
     '/ws/chats/' + room_name_slug + '/');
+
 
 
   chatSocket.onclose = function(e) {

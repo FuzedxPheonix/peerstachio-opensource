@@ -31,8 +31,10 @@ services:
     build: ./nginx/
     ports:
       - "80:80"
+      - "443:443"
     volumes:
       - static:/var/www/static:ro
+      - ./certs:/var/tmp/certs
     depends_on:
       - web
 

@@ -1,8 +1,9 @@
 server {
-
     listen 80;
     server_name peerstachio.com www.peerstachio.com;
     charset utf-8;
+
+
 
     location /static/ {
 	    proxy_pass http://web:8000;
@@ -37,5 +38,9 @@ server {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Host $server_name;
     }
+
+    listen 443 ssl;
+    ssl_certificate     /var/tmp/certs/fullchain.pem;
+    ssl_certificate_key /var/tmp/certs/privkey.pem;
 
 }
