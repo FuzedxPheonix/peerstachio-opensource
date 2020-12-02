@@ -46,7 +46,7 @@ numpy==1.13.1
 oauth==1.0.1
 oauth2client==4.1.2
 olefile==0.44
-petl==1.1.1
+petl==1.6.8
 Pillow==4.3.0
 plotly==2.0.15
 psycopg2==2.7.4
