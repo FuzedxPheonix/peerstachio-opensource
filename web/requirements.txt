@@ -53,7 +53,7 @@ psycopg2==2.7.4
 pyasn1==0.3.7
 pyasn1-modules==0.1.5
 pycparser==2.18
-PyJWT==1.5.3
+PyJWT==2.4.0
 PyMySQL==0.8.0
 PySocks==1.6.7
 python-dateutil==2.6.1
